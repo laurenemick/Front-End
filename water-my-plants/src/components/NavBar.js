@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import {Link, Route, Switch} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 /*
 Style Here:
-NavBar - DropDown Drawer
 Check Home and Login Routes
 */ 
 
@@ -32,14 +32,15 @@ function NavBar() {
       <AppBar position="fixed"  style={{ background: 'transparent', boxShadow: 'none'}}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="#16302B" aria-label="menu">
-            <MenuIcon />
+           <Link to = "/" style={{ textDecoration: 'none' }}> <MenuIcon /></Link>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
 
           </Typography>
-          <Button color="#16302B">Login</Button>
+          <Link to = "/login" style={{ textDecoration: 'none' }}><Button color="#16302B">Login</Button></Link>
         </Toolbar>
       </AppBar>
+
     </div>
   );
 }

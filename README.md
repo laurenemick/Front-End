@@ -2,12 +2,9 @@
 To Do:
 
 Saturday:
-Home Page -
-Large Image(placeholder) w/Fancy Bordered Sign Up Button
-NavBar - Home / Login
-No Header
-Drawer Style
-
+Style = >
+SignUp Form
+LogIn Form
 Routing!
 
 Sunday:
