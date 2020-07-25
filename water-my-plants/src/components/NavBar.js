@@ -29,15 +29,15 @@ function NavBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" color = "#3E8E59">
+      <AppBar position="fixed"  style={{ background: 'transparent', boxShadow: 'none'}}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton edge="start" className={classes.menuButton} color="#16302B" aria-label="menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            No More Dead Plants
+
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="#16302B">Login</Button>
         </Toolbar>
       </AppBar>
     </div>
