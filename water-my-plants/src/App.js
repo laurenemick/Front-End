@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import NavBar from './components/NavBar'
 
 /* 
 Style Here:
@@ -15,6 +16,7 @@ Check SignUp Route
 function App() {
   return (
     <div className="App">
+      <NavBar />
 
       <CssBaseline />
       <Container style = {{maxWidth:"md"}}>
