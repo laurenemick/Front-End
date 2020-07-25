@@ -1,6 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+/* 
+Style Here:
+Background Image = Giant Fancy Button
+Import the NavBar
+Check SignUp Route
+*/
 
 function App() {
   return (
