@@ -49,6 +49,11 @@ const onChange = (event)=>{
   inputChange(name, value)
 }
 
+const onSubmit = (event) =>{
+  event.preventDefault()
+  submit()
+}
+
   const classes = useStyles();
 
   return (
@@ -56,7 +61,7 @@ const onChange = (event)=>{
       <Card className={classes.cardroot} variant="outlined">
       
         <h1>Registration</h1>
-        <form>
+        <form onSubmit = {onSubmit}>
         <CardContent>
       <div>
       
