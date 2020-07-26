@@ -1,16 +1,23 @@
 # Front-End
-To Do:
 
-Saturday:
-Style = >
-SignUp Form
-LogIn Form
-Routing!
+Implement CheckBox?
+Make Text Darker Somehow?
 
 Sunday:
-SignUp Form - Centered - Loading Animation(placeholder)
-LogIn Form - Centered - Loading Animation(placeholder)
-NewUser Welcome Form (display anew)
+1. Write FormSchema/EmptyFormValues -> SignUpForm
+2. Write FormSchema/EmptyFormValues -> LogInForm
+    a. onChange Handler separate?
+    b. onSubmit Handler reusable?
+
+Make Sure Everything Passes Up/Down
+
+3. Fake Axios Poster
+
+4. Write and Center Success Page
+
+
+Have Fun with Cypress Testing
+
 
 
 Stretch:
