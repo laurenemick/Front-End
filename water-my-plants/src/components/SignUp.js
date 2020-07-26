@@ -40,7 +40,15 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
+const {values, errors, disabled, inputChange, submit} = props
+
+const onChange = (event)=>{
+  const name = event.target.name
+  const value = event.target.value
+  inputChange(name, value)
+}
+
   const classes = useStyles();
 
   return (
@@ -57,32 +65,48 @@ export default function SignUp() {
           placeholder="Roman"
           className={classes.textField}
           helperText="First Name"
+          name = "fName"
+          type = "text"
+          value = {values.fName}
+          onChange = {onChange}
         />
         <TextField
           id="margin-none"
           placeholder="Plantski"
           className={classes.textField}
           helperText="Last Name"
+          name = "lName"
+          type = "text"
+          value = {values.lName}
+          onChange = {onChange}
         />
       </div>
 <br />
       <div>
         <TextField
           id="outlined-full-width"
-          label="Email"
-          style={{ margin: 8 }}
           placeholder="iNeedWater@hydrate.com"
+          name = "email"
+          type = "email"
+          value = {values.email}
+          onChange = {onChange}
           fullWidth
           margin="normal"
           InputLabelProps={{
             shrink: true
           }}
           variant="outlined"
+          label="Email"
+          style={{ margin: 8 }}
         />
 <br />
         <TextField
           id="outlined-full-width"
           label="Phone Number"
+          name = "phone"
+          type = "tel"
+          value = {values.phone}
+          onChange = {onChange}
           style={{ margin: 8 }}
           placeholder="(555)-555-5555"
           fullWidth
@@ -100,12 +124,20 @@ export default function SignUp() {
           placeholder="********"
           className={classes.textField}
           helperText="Password"
+          name = "password"
+          type = "password"
+          value = {values.password}
+          onChange = {onChange}
         />
         <TextField
           id="margin-none"
           placeholder="********"
           className={classes.textField}
           helperText="Verify Password"
+          name = "vPassword"
+          value = {values.vPassword}
+          type = "password"
+          onChange = {onChange}
         />
       </div>
       </CardContent>
