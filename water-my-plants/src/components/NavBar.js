@@ -45,7 +45,7 @@ function NavBar() {
               <MenuIcon />
             </Link>
           </IconButton>
-          <Typography variant="h6" className={classes.title}></Typography>
+        <Typography variant="h6" className={classes.title}></Typography>
           <Link to="/login" style={{ textDecoration: "none" }}>
             <Button color="#16302B">Login</Button>
           </Link>
