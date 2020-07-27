@@ -83,7 +83,7 @@ export default function LogIn(props) {
         </div>
           </CardContent>
           <CardActions>
-            <Button disabled = {disabled}>Log In</Button>
+            <Button type = "submit" disabled = {disabled}>Log In</Button>
           </CardActions>
         </form>
       </Card>

@@ -117,8 +117,7 @@ function App() {
       phone: formValues.phone.trim(),
     };
     //axiosPost(newUser)//setUsers//printUser
-    console.log(newUser)
-    setUser(newUser)
+    
   };
 
 

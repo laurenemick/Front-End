@@ -49,7 +49,7 @@ const onChange = (event)=>{
   inputChange(name, value)
 }
 
-const onSubmit = (event) =>{
+const OnSubmit = (event) =>{
   event.preventDefault()
   console.log("Hi!")
   submit()
@@ -62,7 +62,7 @@ const onSubmit = (event) =>{
       <Card className={classes.cardroot} variant="outlined">
       
         <h1>Registration</h1>
-        <form onSubmit = {onSubmit}>
+        <form onSubmit = {OnSubmit} action = "/welcome">
         <CardContent>
       <div>
       
@@ -155,7 +155,7 @@ const onSubmit = (event) =>{
         </div>
       </div>
       <CardActions>
-      <Button disabled = {disabled}>Register!</Button>
+      <Button type = "submit" value = "Submit" disabled = {disabled}>Register!</Button>
       </CardActions>
       </CardContent>
       
