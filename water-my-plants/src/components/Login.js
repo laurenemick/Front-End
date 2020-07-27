@@ -76,9 +76,14 @@ export default function LogIn(props) {
                 helperText="Password"
               />
             </div>
+            <div className='errors'>
+          <div>{errors.email}</div>
+          <div>{errors.password}</div>
+
+        </div>
           </CardContent>
           <CardActions>
-            <Button>Log In</Button>
+            <Button disabled = {disabled}>Log In</Button>
           </CardActions>
         </form>
       </Card>

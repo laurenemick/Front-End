@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import { Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
@@ -6,7 +6,7 @@ import LogIn from "./components/Login";
 import SignUp from "./components/SignUp";
 import BigButton from "./components/Button";
 import Success from "./components/Success";
-import SFormSchema from "./verification/signUpFormSchema";
+import SFormSchema from "./verification/signUpFormSchema"
 import LFormSchema from './verification/loginFormSchema';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
@@ -77,7 +77,7 @@ function App() {
 
   const LChangeHandler = (name, value) => {
     yup
-      .reach(SFormSchema, name)
+      .reach(LFormSchema, name)
       .validate(value)
       .then((valid) => {
         setLFormErrors({
@@ -115,6 +115,18 @@ function App() {
     };
     //axiosPost(newUser)
   };
+
+  useEffect(() => {
+    LFormSchema.isValid(lFormValues).then(valid => {
+      setDisabled(!valid)
+    })
+  }, [formValues])
+
+  useEffect(() => {
+    SFormSchema.isValid(formValues).then(valid =>{
+      setDisabled(!valid)
+    })
+  })
 
   return (
     <div className="App">

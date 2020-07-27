@@ -45,7 +45,9 @@ const {values, errors, disabled, inputChange, submit} = props
 
 const onChange = (event)=>{
   const name = event.target.name
+  console.log(name)
   const value = event.target.value
+  console.log(value)
   inputChange(name, value)
 }
 
@@ -144,10 +146,18 @@ const onSubmit = (event) =>{
           type = "password"
           onChange = {onChange}
         />
+        <div className='errors'>
+          <div>{errors.fName}</div>
+          <div>{errors.lName}</div>
+          <div>{errors.email}</div>
+          <div>{errors.password}</div>
+          <div>{errors.vPassword}</div>
+          <div>{errors.phone}</div>
+        </div>
       </div>
       </CardContent>
       <CardActions>
-      <Button><Link to="/welcome"> Register! </Link> </Button>
+      <Button disabled = {disabled}><Link to="/welcome"> Register! </Link> </Button>
       </CardActions>
       </form>
       

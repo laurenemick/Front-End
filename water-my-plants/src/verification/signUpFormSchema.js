@@ -1,5 +1,7 @@
 import * as yup from 'yup'
-import "yup-phone"
+
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+const passRegExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 
 const SFormSchema = yup.object().shape({
     fName: yup
@@ -14,41 +16,33 @@ const SFormSchema = yup.object().shape({
     .max(15, 'Name is too long')
     .required('Last name is required'),
 
-    email: yup
+    email: yup //works
     .string()
     .email('Email must be valid')
-    .max(20, 'Email is too long')
+    .max(50, 'Email is too long')
     .required('Email is required'),
     
     phone: yup
     .string()
-    .phone("IN", true)
+    .matches(phoneRegExp, 'Phone number is not valid')
     .required("Valid Phone Number is Required"),
 
     password: yup
     .string()
     .matches(
-        /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){2})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){}).*$/,
-        "Password must contain at least 8 characters, one uppercase, one number and two special case character"
+        passRegExp,
+        "Password must contain at least 8 characters, one uppercase, one number and one special case character"
       )
       .max(15, "Your password is too long")
       .required('Password is required'),
 
     vPassword: yup
     .string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Passwords must match')
+    .when("password", {
+        is: password => (password && password.length > 0 ? true : false),
+        then: yup.string().oneOf([yup.ref("password")], "Password doesn't match")
+      })
 })
 
-const LFormSchema = yup.object().shape({
-    email: yup
-    .string()
-    .email('Must be a valid email address')
-    .max(20, 'Your email is quite long')
-    .required('Email is required'),
-
-    password: yup
-    .string()
-    .max(15, 'Password is too long')
-    .required('Password is required')
-})
+export default SFormSchema
