@@ -30,11 +30,11 @@ export default function App() {
           }}
         >
 
-          <Route path="/registration">
+          <Route path="registration/">
             <SignUp setAuthToken={setAuthToken}/>
           </Route>
 
-          <Route path="/login">
+          <Route path="login/">
             <LogIn setAuthToken={setAuthToken}/>
           </Route>
         </Typography>
