@@ -45,14 +45,13 @@ const {values, errors, disabled, inputChange, submit} = props
 
 const onChange = (event)=>{
   const name = event.target.name
-  console.log(name)
   const value = event.target.value
-  console.log(value)
   inputChange(name, value)
 }
 
 const onSubmit = (event) =>{
   event.preventDefault()
+  console.log("Hi!")
   submit()
 }
 
@@ -155,10 +154,11 @@ const onSubmit = (event) =>{
           <div>{errors.phone}</div>
         </div>
       </div>
-      </CardContent>
       <CardActions>
-      <Button disabled = {disabled}><Link to="/welcome"> Register! </Link> </Button>
+      <Button disabled = {disabled}>Register!</Button>
       </CardActions>
+      </CardContent>
+      
       </form>
       
       </Card>

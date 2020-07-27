@@ -6,15 +6,14 @@ import LogIn from "./components/Login";
 import SignUp from "./components/SignUp";
 import BigButton from "./components/Button";
 import Success from "./components/Success";
-import SFormSchema from "./verification/signUpFormSchema"
-import LFormSchema from './verification/loginFormSchema';
+import SFormSchema from "./verification/signUpFormSchema";
+import LFormSchema from "./verification/loginFormSchema";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 
-/* 
-Check SignUp Route
-*/
+
+//Sign Up form values
 const emptyFormValues = {
   fName: "",
   lName: "",
@@ -34,25 +33,26 @@ const signUpFormErrors = {
 };
 
 const loginValues = {
-  email: '',
-  password: ''
-}
+  email: "",
+  password: "",
+};
 const loginError = {
-  email: '',
-  password: ''
-}
+  email: "",
+  password: "",
+};
 
 const initialUsers = [];
 const initialDisabled = true;
 
 function App() {
-  const [formValues, setFormValues] = useState(emptyFormValues);
-  const [SFormErrors, setSFormErrors] = useState(signUpFormErrors);
-  const [users, setUsers] = useState(initialUsers);
-  const [disabled, setDisabled] = useState(initialDisabled);
-  const [lFormValues, setLFormValues] = useState(loginValues);
-  const [lFormErrors, setLFormErrors] = useState(loginError)
+  const [formValues, setFormValues] = useState(emptyFormValues); //signUp form
+  const [SFormErrors, setSFormErrors] = useState(signUpFormErrors); //signUp form
+  const [user, setUser] = useState(initialUsers); //reusable - SignUp and Login
+  const [disabled, setDisabled] = useState(initialDisabled); //reusable - signUp and login
+  const [lFormValues, setLFormValues] = useState(loginValues); //login form values
+  const [lFormErrors, setLFormErrors] = useState(loginError); //login errors
 
+  //signUp changehandler
   const changeHandler = (name, value) => {
     yup
       .reach(SFormSchema, name)
@@ -74,7 +74,7 @@ function App() {
       [name]: value,
     });
   };
-
+  //login Change handler
   const LChangeHandler = (name, value) => {
     yup
       .reach(LFormSchema, name)
@@ -96,16 +96,19 @@ function App() {
       [name]: value,
     });
   };
-
+  //login submit
   const LSubmit = () => {
-    const user = {
+    const newUser = {
       email: lFormValues.email.trim(),
-      password: lFormValues.password.trim()
-    }
-    //axiosPost(user)
-  }
-
+      password: lFormValues.password.trim(),
+    };
+    //axiosPost(user)//setUsers//printUser
+    console.log(newUser)
+    setUser(newUser)
+  };
+  //signup submit
   const RSubmit = () => {
+    console.log("hello")
     const newUser = {
       fName: formValues.fName.trim(),
       lName: formValues.lName.trim(),
@@ -113,20 +116,25 @@ function App() {
       password: formValues.password.trim(),
       phone: formValues.phone.trim(),
     };
-    //axiosPost(newUser)
+    //axiosPost(newUser)//setUsers//printUser
+    console.log(newUser)
+    setUser(newUser)
   };
 
-  useEffect(() => {
-    LFormSchema.isValid(lFormValues).then(valid => {
-      setDisabled(!valid)
-    })
-  }, [formValues])
 
+
+  //paying attention to loginForm
   useEffect(() => {
-    SFormSchema.isValid(formValues).then(valid =>{
-      setDisabled(!valid)
-    })
-  })
+    LFormSchema.isValid(lFormValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [lFormValues]);
+  // paying attention to signup form
+  useEffect(() => {
+    SFormSchema.isValid(formValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [formValues]);
 
   return (
     <div className="App">
@@ -159,16 +167,17 @@ function App() {
           </Route>
 
           <Route path="/login">
-            <LogIn 
-            disabled = {disabled}
-            values = {lFormValues}
-            errors = {lFormErrors}
-            inputChange = {LChangeHandler}
-            submit = {LSubmit}/>
+            <LogIn
+              disabled={disabled}
+              values={lFormValues}
+              errors={lFormErrors}
+              inputChange={LChangeHandler}
+              submit={LSubmit}
+            />
           </Route>
 
           <Route path="/welcome">
-            <Success />
+            <Success user = {user}/>
           </Route>
         </Typography>
       </Container>
