@@ -6,7 +6,6 @@ import SignUp from "./components/SignUp";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import 'fontsource-roboto';
 
 export default function App() {
   // authentication token associated with session, currently a
