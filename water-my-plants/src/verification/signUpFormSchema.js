@@ -16,10 +16,10 @@ const SFormSchema = yup.object().shape({
     .max(15, 'Name is too long')
     .required('Last name is required'),
 
-    email: yup //works
+    email: yup
     .string()
     .email('Email must be valid')
-    .max(50, 'Email is too long')
+    .max(320, 'Email is too long')
     .required('Email is required'),
     
     phone: yup

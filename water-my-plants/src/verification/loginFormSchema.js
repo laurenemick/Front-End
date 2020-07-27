@@ -4,7 +4,7 @@ const LFormSchema = yup.object().shape({
   email: yup
     .string()
     .email("Email must be valid")
-    .max(50, "Email is too long")
+    .max(320, "Email is too long")
     .required("Email is required"),
 
   password: yup
