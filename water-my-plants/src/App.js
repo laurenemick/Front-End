@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import LogIn from "./components/Login";
+import SignUp from "./components/SignUp";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
 
-function App() {
+export default function App() {
+  // authentication token associated with session, currently a
+  // placeholder until we get the proper endpoints
+  const [authToken, setAuthToken] = useState({});
+
+  // universals set in main App: Container and type styling, routes to
+  // individual page components.
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <NavBar />
+      <CssBaseline />
+      <Container style={{ maxWidth: "lg" }}>
+        <Typography
+          component="div"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            backgroundColor: "#cfe8fc",
+            height: "100vh",
+            opacity: "80%",
+          }}
         >
-          Learn React
-        </a>
-      </header>
+
+          <Route path="/registration">
+            <SignUp setAuthToken={setAuthToken}/>
+          </Route>
+
+          <Route path="/login">
+            <LogIn setAuthToken={setAuthToken}/>
+          </Route>
+        </Typography>
+      </Container>
     </div>
   );
 }
 
-export default App;
+//  LocalWords:  roboto
