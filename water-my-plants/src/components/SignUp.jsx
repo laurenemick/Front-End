@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Map } from "immutable";
 
 // courtesy of style master Ava
-const useStyles = makeStyles(theme => ({
+const styles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexDirection: "column",
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   pos: {
     marginBottom: 12,
   },
-}));
+}))();
 
 // default form values
 const emptyForm = Map({
