@@ -85,6 +85,7 @@ export default function SignUp (props) {
       .then((response) => {
         setValidationErrors(emptyErrors);
       })
+
       .catch((error) => {
         // build new errors object one error at a time
         const errors = {};
@@ -92,11 +93,19 @@ export default function SignUp (props) {
         // provide error message for invalid phone number
         if ("mobilePhone" in errors)
           errors.mobilePhone = "Invalid phone number";
+        if (formValues.password && formValues.passwordScore < 3)
+          errors.password = "Too weak";
 
         setValidationErrors(errors);
       });
   }, [formValues]);
 
+  function formatNameWithError(field, humanReadableField) {
+    // check if field is in error, and include error in prompt if so
+    return field in validationErrors ?
+      `${humanReadableField} (${validationErrors[field]})` :
+      humanReadableField;
+  }
 
   // handle changes to text fields
   function onTextChange(field, event) {
@@ -104,8 +113,8 @@ export default function SignUp (props) {
   }
 
   // handle changes in password strength
-  function processPasswordScore (event) {
-    setFormValues({...formValues, passwordScore: event.target.value});
+  function processPasswordScore (score) {
+    setFormValues({...formValues, passwordScore: score});
   }
 
   // handle form submission
