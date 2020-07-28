@@ -126,7 +126,7 @@ export default function SignUp (props) {
 
   // handle form submission
   function submitForm () {
-
+    alert("submitted");
   }
 
   // check if form is complete and valid
