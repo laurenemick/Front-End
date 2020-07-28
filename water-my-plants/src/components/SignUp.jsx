@@ -52,7 +52,7 @@ export default function SignUp (props) {
 
   // handle changes to text fields
   function onTextChange(field, event) {
-
+    setFormValues({...formValues, [field]: event.target.value});
   }
 
   // handle changes in password strength
