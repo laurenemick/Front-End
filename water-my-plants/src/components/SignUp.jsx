@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Map } from "immutable";
 import TextField from "@material-ui/core/TextField";
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -32,8 +31,8 @@ const styleDefinition = makeStyles(theme => ({
   }
 }));
 
-// default form values
-const emptyForm = Map({
+// default form values - immutable
+const emptyForm = {
   personalName: "",
   surname: "",
   email: "",
@@ -42,7 +41,8 @@ const emptyForm = Map({
   verifyPassword: "",
   passwordStrength: 0,
   submitDisabled: true
-});
+};
+Object.freeze(emptyForm);
 
 // Sign up page
 export default function SignUp (props) {
