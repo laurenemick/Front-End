@@ -5,8 +5,9 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-
 import PasswordStrengthBar from 'react-password-strength-bar';
+import * as yup from 'yup';
+import "yup-phone"; // adds google phone number validation to yup
 
 // courtesy of style master Ava
 const styleDefinition = makeStyles(theme => ({
@@ -30,6 +31,29 @@ const styleDefinition = makeStyles(theme => ({
     fontSize: 14,
   }
 }));
+
+const validationSchema = yup.object().shape({
+  personalName: yup
+    .string()
+    .required('Required'),
+  surname: yup
+    .string()
+    .required('Required'),
+  email: yup
+    .string()
+    .email("Must be a valid email address")
+    .required("Required"),
+  // phone validation defaults to India and does not accept a message. We
+  // will have to tell it to use US numbers and provide a message later.
+  mobilePhone: yup
+    .phone("US"),
+  password: yup
+    .string()
+    .required("Required"),
+  verifyPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+});
 
 // default form values - immutable
 const emptyForm = {
