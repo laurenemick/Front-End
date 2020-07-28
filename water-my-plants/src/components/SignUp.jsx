@@ -35,14 +35,18 @@ const emptyForm = Map({
   email: "",
   mobilePhone: "",
   password: "",
-  confirmPassword: ""
+  verifyPassword: ""
 });
-
 
 // Sign up page
 export default function SignUp (props) {
   const setAuthToken = {props};
   const [formValues, setFormValues] = useState(emptyForm);
+
+  // handle changes to text fields
+  function onTextChange(field, event) {
+
+  }
 
   return (
     <div/>
