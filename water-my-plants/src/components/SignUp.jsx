@@ -56,6 +56,16 @@ const validationSchema = yup.object().shape({
     .oneOf([yup.ref("password"), null], "Passwords must match")
 });
 
+class NewUser {
+  constructor (formValues) {
+    this.personalName = formValues.personalName;
+    this.surname = formValues.surname;
+    this.email = formValues.email;
+    this.mobilePhone = formValues.mobilePhone;
+    this.password = formValues.password;
+  }
+}
+
 // default form values - immutable
 const emptyForm = {
   personalName: "",
