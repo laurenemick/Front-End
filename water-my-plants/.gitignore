@@ -47,5 +47,6 @@ scratch
 # Indium configuration
 .indium.json
 
-# seems related to Lambda School 'npm start'
+# npm start temporary directories
 nil/
+false/
