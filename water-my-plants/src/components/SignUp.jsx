@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Map } from "immutable";
 
 // courtesy of style master Ava
-const styles = makeStyles(theme => ({
+const styleDefinition = makeStyles(theme => ({
   root: {
     display: "flex",
     flexDirection: "column",
@@ -23,7 +23,7 @@ const styles = makeStyles(theme => ({
   title: {
     fontSize: 14,
   }
-}))();
+}));
 
 // default form values
 const emptyForm = Map({
@@ -39,6 +39,9 @@ const emptyForm = Map({
 export default function SignUp (props) {
   const setAuthToken = {props};
   const [formValues, setFormValues] = useState(emptyForm);
+  const setAuthToken = {props},
+        [formValues, setFormValues] = useState(emptyForm),
+        styles = styleDefinition();
 
   // handle changes to text fields
   function onTextChange(field, event) {
