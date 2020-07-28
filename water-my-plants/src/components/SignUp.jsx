@@ -39,7 +39,7 @@ const emptyForm = {
   mobilePhone: "",
   password: "",
   verifyPassword: "",
-  passwordStrength: 0,
+  passwordScore: 0,
   submitDisabled: true
 };
 Object.freeze(emptyForm);
@@ -57,7 +57,7 @@ export default function SignUp (props) {
 
   // handle changes in password strength
   function processPasswordScore (event) {
-
+    setFormValues({...formValues, passwordScore: event.target.value});
   }
 
   // handle form submission
