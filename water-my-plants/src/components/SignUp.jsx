@@ -44,7 +44,10 @@ const validationSchema = yup.object().shape({
     .email("Must be a valid email address")
     .required("Required"),
   mobilePhone: yup
-    .string(),
+    .string()
+    .matches(
+      /^$|^(1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s\-]?[\0-9]{3}[\s\-]?[0-9]{4}$/,
+      "Must be a valid US phone number"),
   password: yup
     .string()
     .required("Required"),
@@ -89,13 +92,6 @@ export default function SignUp (props) {
         // build new errors object one error at a time
         const errors = {};
         error.inner.forEach((error) => errors[error.path] = error.message);
-        // provide error message for invalid phone number
-        if ("mobilePhone" in errors) {
-          // don't give error for optional mobile phone number being empty
-          if (formValues.mobilePhone)
-            errors.mobilePhone = "Invalid phone number";
-          else
-            delete errors.mobilePhone;}
 
         if (formValues.password && formValues.passwordScore < 3)
           errors.password = "Too weak";
@@ -229,3 +225,4 @@ export default function SignUp (props) {
 }
 
 //  LocalWords:  verifyPassword TextField CardActions CardContent
+//  LocalWords:  abortEarly mobilePhone
