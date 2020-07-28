@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Card from '@material-ui/core/Card';
@@ -68,11 +68,35 @@ const emptyForm = {
 };
 Object.freeze(emptyForm);
 
+// having a specific empty object instance makes for easier logical operations
+const emptyErrors = {};
+
 // Sign up page
 export default function SignUp (props) {
   const setAuthToken = {props},
         [formValues, setFormValues] = useState(emptyForm),
+        [validationErrors, setValidationErrors] = useState(emptyErrors),
         styles = styleDefinition();
+
+  // check for errors and save error messages every time form changes
+  useEffect(() => {
+    // turn off abortEarly to get all errors, not just the first one
+    validationSchema.validate(formValues, {abortEarly: false})
+      .then((response) => {
+        setValidationErrors(emptyErrors);
+      })
+      .catch((error) => {
+        // build new errors object one error at a time
+        const errors = {};
+        error.inner.forEach((error) => errors[error.path] = error.message);
+        // provide error message for invalid phone number
+        if ("mobilePhone" in errors)
+          errors.mobilePhone = "Invalid phone number";
+
+        setValidationErrors(errors);
+      });
+  }, [formValues]);
+
 
   // handle changes to text fields
   function onTextChange(field, event) {
@@ -87,6 +111,12 @@ export default function SignUp (props) {
   // handle form submission
   function submitForm () {
 
+  }
+
+  // check if form is complete and valid
+  function validate() {
+    // Password must be at least "good" and no error messages
+    return formValues.passwordScore >= 3 && validationErrors === emptyErrors;
   }
 
   return (
