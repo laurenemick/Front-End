@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "easier-requests": "0.0.4",
     "fontsource-roboto": "^2.2.6",
+    "material-ui-phone-number": "^2.2.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-password-strength-bar": "^0.3.2",
