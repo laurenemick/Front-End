@@ -6,7 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import PasswordStrengthBar from 'react-password-strength-bar';
-// strangely, yup-phone only worked if Yup was capitalized
+import MuiPhoneInput from 'material-ui-phone-number';
 import * as yup from 'yup';
 
 // courtesy of style master Ava
@@ -107,6 +107,11 @@ export default function SignUp (props) {
       humanReadableField;
   }
 
+  // handle changes to phone number
+  function onPhoneChange (number) {
+    setFormValues({...formValues, mobilePhone: number});
+  }
+
   // handle changes to text fields
   function onTextChange(field, event) {
     setFormValues({...formValues, [field]: event.target.value});
@@ -165,13 +170,14 @@ export default function SignUp (props) {
               style={{ margin: 8 }}
             />
             <br />
-            <TextField
+            <MuiPhoneInput
+              defaultCountry="us"
+              regions={["north-america", "carribean"]}
               id="phone-number-field"
               label={formatNameWithError("mobilePhone", "Mobile Phone Number")}
               name = "mobilePhone"
-              type = "tel"
               value = {formValues.phone}
-              onChange = {(event) => onTextChange("mobilePhone", event)}
+              onChange = {onPhoneChange}
               style={{ margin: 8 }}
               fullWidth
               margin="normal"
