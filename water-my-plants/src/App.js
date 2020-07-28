@@ -42,5 +42,3 @@ export default function App() {
     </div>
   );
 }
-
-//  LocalWords:  roboto
