@@ -7,8 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import PasswordStrengthBar from 'react-password-strength-bar';
 // strangely, yup-phone only worked if Yup was capitalized
-import * as Yup from 'yup';
-import "yup-phone"; // adds google phone number validation to yup
+import * as yup from 'yup';
 
 // courtesy of style master Ava
 const styleDefinition = makeStyles(theme => ({
@@ -33,28 +32,25 @@ const styleDefinition = makeStyles(theme => ({
   }
 }));
 
-const validationSchema = Yup.object().shape({
-  personalName: Yup
+const validationSchema = yup.object().shape({
+  personalName: yup
     .string()
     .required('Required'),
-  surname: Yup
+  surname: yup
     .string()
     .required('Required'),
-  email: Yup
+  email: yup
     .string()
     .email("Must be a valid email address")
     .required("Required"),
-  // phone validation defaults to India and does not accept a message. We
-  // will have to tell it to use US numbers and provide a message later.
-  mobilePhone: Yup
-    .string()
-    .phone("US"),
-  password: Yup
+  mobilePhone: yup
+    .string(),
+  password: yup
     .string()
     .required("Required"),
-  verifyPassword: Yup
+  verifyPassword: yup
     .string()
-    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .oneOf([yup.ref("password"), null], "Passwords must match")
 });
 
 // default form values - immutable
