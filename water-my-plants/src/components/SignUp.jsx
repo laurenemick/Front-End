@@ -72,6 +72,7 @@ Object.freeze(emptyForm);
 
 // having a specific empty object instance makes for easier logical operations
 const emptyErrors = {};
+Object.freeze(emptyErrors);
 
 // Sign up page
 export default function SignUp (props) {
