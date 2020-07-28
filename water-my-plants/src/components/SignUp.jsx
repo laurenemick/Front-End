@@ -93,8 +93,13 @@ export default function SignUp (props) {
         const errors = {};
         error.inner.forEach((error) => errors[error.path] = error.message);
         // provide error message for invalid phone number
-        if ("mobilePhone" in errors)
-          errors.mobilePhone = "Invalid phone number";
+        if ("mobilePhone" in errors) {
+          // don't give error for optional mobile phone number being empty
+          if (formValues.mobilePhone)
+            errors.mobilePhone = "Invalid phone number";
+          else
+            delete errors.mobilePhone;}
+
         if (formValues.password && formValues.passwordScore < 3)
           errors.password = "Too weak";
 
@@ -140,7 +145,7 @@ export default function SignUp (props) {
             <TextField
               id="personal-name-field"
               className={styles.textField}
-              helperText="Personal Name"
+              label={formatNameWithError("personalName", "Personal Name")}
               name = "personalName"
               type = "text"
               value = {formValues.personalName}
@@ -148,7 +153,7 @@ export default function SignUp (props) {
             <TextField
               id="surname-field"
               className={styles.textField}
-              helperText="Surname"
+              label={formatNameWithError("surname", "Surname")}
               name = "surname"
               type = "text"
               value = {formValues.surname}
@@ -169,13 +174,13 @@ export default function SignUp (props) {
                 shrink: true
               }}
               variant="outlined"
-              label="Email"
+              label={formatNameWithError("email", "Email")}
               style={{ margin: 8 }}
             />
             <br />
             <TextField
               id="phone-number-field"
-              label="Mobile Phone Number"
+              label={formatNameWithError("mobilePhone", "Mobile Phone Number")}
               name = "mobilePhone"
               type = "tel"
               value = {formValues.phone}
@@ -194,7 +199,7 @@ export default function SignUp (props) {
             <TextField
               id="password-field"
               className={styles.textField}
-              helperText="Password"
+              label={formatNameWithError("password", "Password")}
               name = "password"
               type = "password"
               value = {formValues.password}
@@ -203,7 +208,7 @@ export default function SignUp (props) {
             <TextField
               id="verify-password-field"
               className={styles.textField}
-              helperText="Verify Password"
+              label={formatNameWithError("verifyPassword", "Verify Password")}
               name = "verifyPassword"
               value = {formValues.vPassword}
               type = "password"
