@@ -86,6 +86,7 @@ export default function LogIn (props) {
   function onTextChange(field, event) {
     setFormValues({...formValues, [field]: event.target.value});
   }
+
   // handle form submission
   function submitForm () {
     alert("submitted");
