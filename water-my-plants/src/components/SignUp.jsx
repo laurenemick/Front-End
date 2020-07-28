@@ -46,7 +46,7 @@ const validationSchema = yup.object().shape({
   mobilePhone: yup
     .string()
     .matches(
-      /^$|^[+](1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s\-]?[\0-9]{3}[\s\-]?[0-9]{4}$/,
+      /^$|^[+](1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s-]?[\0-9]{3}[\s-]?[0-9]{4}$/,
       "Must be a valid phone number"),
   password: yup
     .string()
