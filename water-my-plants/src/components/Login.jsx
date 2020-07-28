@@ -23,10 +23,6 @@ const styleDefinition = makeStyles(theme => ({
   },
   cardroot: {
     minWidth: 275,
-  },
-
-  title: {
-    fontSize: 14,
   }
 }));
 
