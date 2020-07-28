@@ -214,7 +214,7 @@ export default function SignUp (props) {
         </CardContent>
         <CardActions>
           <Button variant="contained"
-                  disabled = {formValues.disabled}
+                  disabled = {validationErrors !== emptyErrors}
                   onClick={submitForm}>
             Register!
           </Button>
