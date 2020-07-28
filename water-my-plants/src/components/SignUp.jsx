@@ -48,6 +48,11 @@ export default function SignUp (props) {
 
   }
 
+  // handle form submission
+  function submitForm () {
+
+  }
+
   return (
     <div/>
   );
