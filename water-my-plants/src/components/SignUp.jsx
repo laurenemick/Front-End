@@ -84,7 +84,7 @@ export default function SignUp (props) {
   useEffect(() => {
     // turn off abortEarly to get all errors, not just the first one
     validationSchema.validate(formValues, {abortEarly: false})
-      .then((response) => {
+      .then(() => {
         setValidationErrors(emptyErrors);
       })
 
@@ -120,12 +120,6 @@ export default function SignUp (props) {
   // handle form submission
   function submitForm () {
     alert("submitted");
-  }
-
-  // check if form is complete and valid
-  function validate() {
-    // Password must be at least "good" and no error messages
-    return formValues.passwordScore >= 3 && validationErrors === emptyErrors;
   }
 
   return (
