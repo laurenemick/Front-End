@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 // courtesy of style master Ava
@@ -27,10 +27,22 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+// default form values
+const emptyForm = Map({
+  personalName: "",
+  surname: "",
+  email: "",
+  mobilePhone: "",
+  password: "",
+  confirmPassword: ""
+});
+
 
 // Sign up page
 export default function SignUp (props) {
   const setAuthToken = {props};
+  const [formValues, setFormValues] = useState(emptyForm);
+
   return (
     <div/>
   );
