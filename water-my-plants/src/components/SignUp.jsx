@@ -22,10 +22,7 @@ const styles = makeStyles(theme => ({
 
   title: {
     fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
+  }
 }))();
 
 // default form values
