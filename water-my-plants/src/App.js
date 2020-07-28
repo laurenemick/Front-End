@@ -120,7 +120,7 @@ function App() {
     LFormSchema.isValid(lFormValues).then(valid => {
       setDisabled(!valid)
     })
-  }, [formValues])
+  })
 
   useEffect(() => {
     SFormSchema.isValid(formValues).then(valid =>{

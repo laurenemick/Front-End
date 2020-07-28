@@ -8,7 +8,7 @@ Button: Loading Image -> on Success -> Success
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -157,7 +157,7 @@ const onSubmit = (event) =>{
       </div>
       </CardContent>
       <CardActions>
-      <Button disabled = {disabled}><Link to="/welcome"> Register! </Link> </Button>
+      <Button id = "submitBtn"disabled = {disabled}>Register!</Button>
       </CardActions>
       </form>
       

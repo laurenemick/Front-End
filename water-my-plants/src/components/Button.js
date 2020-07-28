@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function BigButton() {
   return (
     <>
-      <Button
+      <Button id = "signUpButton"
         style={{ color: "#210124", maxHeight: "2.5rem", alignSelf: "center" }}
       >
         <Link to="/registration" style={{ textDecoration: "none" }}>

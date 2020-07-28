@@ -74,6 +74,10 @@ export default function LogIn(props) {
                 placeholder="********"
                 className={classes.textField}
                 helperText="Password"
+                type="password"
+                name = "password"
+                value = {values.password}
+                onChange = {onChange}
               />
             </div>
             <div className='errors'>
@@ -83,7 +87,7 @@ export default function LogIn(props) {
         </div>
           </CardContent>
           <CardActions>
-            <Button disabled = {disabled}>Log In</Button>
+            <Button id = "submitBtn" type = "submit" disabled = {disabled}>Log In</Button>
           </CardActions>
         </form>
       </Card>
