@@ -40,7 +40,7 @@ const validationSchema = yup.object().shape({
     .string()
     .email("Invalid email address")
     .required("Required"),
-  mobilePhone: yup
+  phone: yup
     .string()
     .matches(
       /^$|^[+](1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s-]?[\0-9]{3}[\s-]?[0-9]{4}$/,
@@ -58,7 +58,7 @@ class NewUser {
   constructor (formValues) {
     this.username = formValues.username;
     this.email = formValues.email;
-    this.mobilePhone = formValues.mobilePhone;
+    this.phone = formValues.phone;
     this.password = formValues.password;
   }
 }
@@ -67,7 +67,7 @@ class NewUser {
 const emptyForm = {
   username: "",
   email: "",
-  mobilePhone: "",
+  phone: "",
   password: "",
   verifyPassword: "",
   passwordScore: 0,
@@ -115,7 +115,7 @@ export default function Registration (props) {
 
   // handle changes to phone number
   function onPhoneChange (number) {
-    setFormValues({...formValues, mobilePhone: number});
+    setFormValues({...formValues, phone: number});
   }
 
   // handle changes to text fields
@@ -175,10 +175,10 @@ export default function Registration (props) {
             <br />
             <MuiPhoneInput
               defaultCountry="us"
-              regions={["north-america", "carribean"]}
+              regions={["north-america", "caribbean"]}
               id="phone-number-field"
-              label={formatNameWithError("mobilePhone", "Mobile Phone Number")}
-              name = "mobilePhone"
+              label={formatNameWithError("phone", "Phone Number")}
+              name = "phone"
               value = {formValues.phone}
               onChange = {onPhoneChange}
               style={{ margin: 8 }}
@@ -225,4 +225,4 @@ export default function Registration (props) {
 }
 
 //  LocalWords:  verifyPassword TextField CardActions CardContent
-//  LocalWords:  abortEarly mobilePhone
+//  LocalWords:  abortEarly
