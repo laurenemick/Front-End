@@ -124,12 +124,12 @@ export default function Registration (props) {
   }
 
   // handle changes in password strength
-  function processPasswordScore (score) {
+  function onChangeScore(score) {
     setFormValues({...formValues, passwordScore: score});
   }
 
   // handle form submission
-  function submitForm () {
+  function submitForm() {
     alert("submitted");
   }
 
@@ -208,7 +208,7 @@ export default function Registration (props) {
               type = "password"
               onChange = {(event) => onTextChange("verifyPassword", event)} />
             <PasswordStrengthBar password={formValues.password}
-                                 onChangeScore={processPasswordScore}/>
+                                 onChangeScore={onChangeScore}/>
 
           </div>
         </CardContent>
