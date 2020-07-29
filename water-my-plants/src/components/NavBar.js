@@ -70,7 +70,7 @@ function NavBar() {
         <MenuItem onClick={handleClose}><a href = "https://awesome-galileo-1b6080.netlify.app/" style={{ textDecoration: "none" }}>Home</a></MenuItem>
         <MenuItem onClick={handleClose}><Link to ="/registration"style={{ textDecoration: "none" }}>Sign Up</Link></MenuItem>
         <MenuItem onClick={handleClose}><Link to="/login" style={{ textDecoration: "none" }}>Log In</Link></MenuItem>
-        <MenuItem onClick={handleClose}><a href = "https://awesome-galileo-1b6080.netlify.app/marketing.html" style={{ textDecoration: "none" }}>About</a></MenuItem>
+        <MenuItem onClick={handleClose}><a href = "https://awesome-galileo-1b6080.netlify.app/marketing.html" style={{ textDecoration: "none" }}>Marketing</a></MenuItem>
       </Menu>
 
 
