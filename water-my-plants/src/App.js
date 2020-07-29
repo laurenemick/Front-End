@@ -7,13 +7,13 @@ import Container from "@material-ui/core/Container";
 // Components
 import Dashboard from './components/Dashboard';
 import NavBar from "./components/NavBar";
-import Login from "./components/Login";
+import Login from "./components/Login.js";
 import Registration from "./components/Registration";
 // import About from './components/About';
 // import MarketingPage from './MarketingPage';
 
 // Utils
-// import { PrivateRoute } from './utils/PrivateRoute';
+import { PrivateRoute } from './utils/PrivateRoute';
 
 import './App.css';
 
@@ -41,12 +41,12 @@ export default function App() {
         >
       <div className='App'>
         <Switch>
-          <Route exact path='/' component={Dashboard} />
+          <PrivateRoute exact path='/' component={Dashboard} />
           <Route exact path="/login">
-            <Login setAuthToken={setAuthToken}/>
+            <Login />
           </Route>
           <Route exact path="/registration">
-            <Registration setAuthToken={setAuthToken}/>
+            <Registration />
           </Route>
           {/*<Route exact path='/about' component={About} />
           <Route exact path='/home' component={MarketingPage} /> */}

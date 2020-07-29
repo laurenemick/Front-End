@@ -1,15 +1,14 @@
 import * as yup from "yup";
 
 const LFormSchema = yup.object().shape({
-  email: yup
+  username: yup
     .string()
-    .email("Email must be valid")
-    .max(320, "Email is too long")
-    .required("Email is required"),
+    .max(320, "Username is too long")
+    .required("Username is required"),
 
   password: yup
     .string()
-    .max(15, "Your password is too long")
+    .max(30, "Your password is too long")
     .required("Password is required"),
 });
 
