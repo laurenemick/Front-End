@@ -4,17 +4,11 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 const passRegExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 
 const SFormSchema = yup.object().shape({
-    fName: yup
+    username: yup
     .string()
     .min(3, 'First name must be at least three characters')
     .max(15, 'Name is too long')
     .required('First name is required'),
-
-    lName: yup
-    .string()
-    .min(3, 'Last name must be at least three characters')
-    .max(15, 'Name is too long')
-    .required('Last name is required'),
 
     email: yup
     .string()
