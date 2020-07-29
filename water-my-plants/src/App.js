@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useState } from "react";
+import { Route, Switch } from "react-router-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
 
 // Components
 import Dashboard from './components/Dashboard';
-// import Login from './components/Login';
-// import SignUp from './components/SignUp';
+import NavBar from "./components/NavBar";
+import LogIn from "./components/Login";
+import Registration from "./components/Registration";
 // import About from './components/About';
 // import MarketingPage from './MarketingPage';
 
@@ -21,14 +25,34 @@ export default function App() {
   // universals set in main App: Container and type styling, routes to
   // individual page components.
   return (
+    <div className="App">
+      <NavBar />
+      <CssBaseline />
+      <Container style={{ maxWidth: "lg" }}>
+        <Typography
+          component="div"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            backgroundColor: "#cfe8fc",
+            height: "100vh",
+            opacity: "80%",
+          }}
+        >
+
       <div className='App'>
         <Switch>
           <Route exact path='/' component={Dashboard} />
           {/* <Route exact path='/login' component={Login} /> */}
-          {/* <Route exact path='/signup' component={SignUp} />
-          <Route exact path='/about' component={About} />
+          <Route exact path="/registration">
+            <Registration setAuthToken={setAuthToken}/>
+          </Route>
+          {/*<Route exact path='/about' component={About} />
           <Route exact path='/home' component={MarketingPage} /> */}
         </Switch>
       </div>
+        </Typography>
+      </Container>
+    </div>
   );
 }
