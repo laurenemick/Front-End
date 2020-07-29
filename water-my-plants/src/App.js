@@ -1,11 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import LogIn from "./components/Login";
-import Registration from "./components/Registration";
+import React, { useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+
+// Components
+import Dashboard from './components/Dashboard';
+import NavBar from "./components/NavBar";
+import LogIn from "./components/Login";
+import Registration from "./components/Registration";
+// import About from './components/About';
+// import MarketingPage from './MarketingPage';
+
+// Utils
+// import { PrivateRoute } from './utils/PrivateRoute';
+
+import './App.css';
 
 export default function App() {
   // authentication token associated with session, currently a
@@ -30,13 +40,17 @@ export default function App() {
           }}
         >
 
-          <Route path="/registration">
+      <div className='App'>
+        <Switch>
+          <Route exact path='/' component={Dashboard} />
+          {/* <Route exact path='/login' component={Login} /> */}
+          <Route exact path="/registration">
             <Registration setAuthToken={setAuthToken}/>
           </Route>
-
-          <Route path="login/">
-            <LogIn setAuthToken={setAuthToken}/>
-          </Route>
+          {/*<Route exact path='/about' component={About} />
+          <Route exact path='/home' component={MarketingPage} /> */}
+        </Switch>
+      </div>
         </Typography>
       </Container>
     </div>
