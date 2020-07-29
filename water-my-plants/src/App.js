@@ -34,7 +34,7 @@ export default function App() {
             <Registration setAuthToken={setAuthToken}/>
           </Route>
 
-          <Route path="/login">
+          <Route path="login/">
             <LogIn setAuthToken={setAuthToken}/>
           </Route>
         </Typography>
