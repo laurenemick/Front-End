@@ -41,13 +41,14 @@ const validationSchema = yup.object().shape({
     .required('Required'),
   email: yup
     .string()
-    .email("Must be a valid email address")
+    .email("Invalid email address")
     .required("Required"),
   mobilePhone: yup
     .string()
     .matches(
       /^$|^[+](1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s-]?[\0-9]{3}[\s-]?[0-9]{4}$/,
-      "Must be a valid phone number"),
+      "Invalid phone number")
+    .required("Required"),
   password: yup
     .string()
     .required("Required"),
