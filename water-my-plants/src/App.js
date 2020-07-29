@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import LogIn from "./components/Login";
-import SignUp from "./components/SignUp";
+import Registration from "./components/Registration";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
@@ -31,7 +31,7 @@ export default function App() {
         >
 
           <Route path="/registration">
-            <SignUp setAuthToken={setAuthToken}/>
+            <Registration setAuthToken={setAuthToken}/>
           </Route>
 
           <Route path="/login">

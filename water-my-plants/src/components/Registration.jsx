@@ -85,7 +85,7 @@ const emptyErrors = {};
 Object.freeze(emptyErrors);
 
 // Sign up page
-export default function SignUp (props) {
+export default function Registration (props) {
   const setAuthToken = {props},
         [formValues, setFormValues] = useState(emptyForm),
         [validationErrors, setValidationErrors] = useState(emptyErrors),
