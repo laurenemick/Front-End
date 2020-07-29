@@ -13,7 +13,13 @@ import Dashboard from './components/Dashboard';
 
 import './App.css';
 
-function App() {
+export default function App() {
+  // authentication token associated with session, currently a
+  // placeholder until we get the proper endpoints
+  const [authToken, setAuthToken] = useState({});
+
+  // universals set in main App: Container and type styling, routes to
+  // individual page components.
   return (
     <Router>
       <div className='App'>
