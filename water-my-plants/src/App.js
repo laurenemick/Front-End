@@ -39,7 +39,6 @@ export default function App() {
             opacity: "80%",
           }}
         >
-
       <div className='App'>
         <Switch>
           <Route exact path='/' component={Dashboard} />
