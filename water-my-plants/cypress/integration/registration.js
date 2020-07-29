@@ -62,4 +62,13 @@ describe('Test email field submission', () => {
   });
 });
 
+describe('Test phone number field submission', () => {
+  it("Missing phone number stops submission", () => {
+    fillExcept({phone: ""}).should("be.disabled");
+  });
+  it("To short phone number stops submission", () => {
+    fillExcept({phone: "555555555"}).should("be.disabled");
+  });
+});
+
 });
