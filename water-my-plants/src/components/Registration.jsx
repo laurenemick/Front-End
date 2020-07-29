@@ -164,8 +164,7 @@ export default function Registration (props) {
               }}
               variant="outlined"
               label={formatNameWithError("email", "Email")}
-              style={{ margin: 8 }}
-            />
+              style={{ margin: 8 }} />
             <br />
             <MuiPhoneInput
               defaultCountry="us"
@@ -181,8 +180,7 @@ export default function Registration (props) {
               InputLabelProps={{
                 shrink: true
               }}
-              variant="outlined"
-            />
+              variant="outlined" />
           </div>
           <br />
           <div>
@@ -193,8 +191,7 @@ export default function Registration (props) {
               name = "password"
               type = "password"
               value = {formValues.password}
-              onChange = {(event) => onTextChange("password", event)}
-            />
+              onChange = {(event) => onTextChange("password", event)} />
             <TextField
               id="verify-password-field"
               className={styles.textField}
@@ -202,8 +199,7 @@ export default function Registration (props) {
               name = "verifyPassword"
               value = {formValues.vPassword}
               type = "password"
-              onChange = {(event) => onTextChange("verifyPassword", event)}
-            />
+              onChange = {(event) => onTextChange("verifyPassword", event)} />
             <PasswordStrengthBar password={formValues.password}
                                  onChangeScore={processPasswordScore}/>
 
