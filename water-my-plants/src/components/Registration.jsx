@@ -146,8 +146,15 @@ export default function Registration (props) {
               label={formatNameWithError("username", "Username")}
               name = "username"
               type = "text"
-              value = {formValues.personalName}
-              onChange = {(event) => onTextChange("personalName", event)} />
+              value = {formValues.username}
+              onChange = {(event) => onTextChange("username", event)}
+              fullWidth
+              margin="normal"
+              InputLabelProps={{
+                shrink: true
+              }}
+              variant="outlined"
+              style={{ margin: 8 }} />
           </div>
           <br />
           <div>
