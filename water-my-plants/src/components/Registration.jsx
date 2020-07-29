@@ -213,7 +213,8 @@ export default function Registration (props) {
           </div>
         </CardContent>
         <CardActions>
-          <Button variant="contained"
+          <Button id="submit-form-button"
+                  variant="contained"
                   disabled = {validationErrors !== emptyErrors}
                   onClick={submitForm}>
             Register!
