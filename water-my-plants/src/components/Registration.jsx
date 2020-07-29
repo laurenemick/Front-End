@@ -35,6 +35,7 @@ const styleDefinition = makeStyles(theme => ({
 const validationSchema = yup.object().shape({
   username: yup
     .string()
+    .matches(/^[a-zA-Z0-9-_]+$/, "Alphanumeric characters and dashes only")
     .required('Required'),
   email: yup
     .string()

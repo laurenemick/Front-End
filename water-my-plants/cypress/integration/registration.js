@@ -26,11 +26,22 @@ function fillExcept (variantEntries) {
   return cy.get("#submit-form-button");
 }
 
-describe('Test validation', () => {
+describe('Test valid submission', () => {
   it('Valid entry can be submitted', () => {
     fillExcept().should("be.enabled");
   });
+});
+
+describe('Test username field submission', () => {
   it('Missing username stops submission', () => {
     fillExcept({username: ""}).should("be.disabled");
   });
+  it('Invalid characters in username stop submission', () => {
+    fillExcept({username: "plant&user"}).should("be.disabled");
+  });
+  it('Spaces in username stop submission', () => {
+    fillExcept({username: "plant user"}).should("be.disabled");
+  });
+});
+
 });
