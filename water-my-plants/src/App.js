@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 // Components
 import Dashboard from './components/Dashboard';
@@ -21,7 +21,6 @@ export default function App() {
   // universals set in main App: Container and type styling, routes to
   // individual page components.
   return (
-    <Router>
       <div className='App'>
         <Switch>
           <Route exact path='/' component={Dashboard} />
@@ -31,7 +30,5 @@ export default function App() {
           <Route exact path='/home' component={MarketingPage} /> */}
         </Switch>
       </div>
-    </Router>
   );
 }
-export default App;
