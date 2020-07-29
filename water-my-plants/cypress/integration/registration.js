@@ -3,8 +3,8 @@ const validEntries = {
   username: "plantuser",
   email: "plantuser@waterme.com",
   phone: "5555555555",
-  password: "=1|A|Tree",
-  verifyPassword: "=1|A|Tree"
+  password: "!1+A+Tree",
+  verifyPassword: "!1+A+Tree"
 };
 Object.freeze(validEntries);
 
@@ -29,6 +29,20 @@ function fillExcept (variantEntries) {
 describe('Test valid submission', () => {
   it('Valid entry can be submitted', () => {
     fillExcept().should("be.enabled");
+  });
+});
+
+describe('Test password submission', () => {
+  it("To weak password stops submission", () => {
+    fillExcept({password: "!1+A+Tre", verifyPassword: "!1+A+Tre"})
+      .should("be.disabled");
+  });
+  it("No password stops submission", () => {
+    fillExcept({password: "", verifyPassword: ""}).should("be.disabled");
+  });
+  it("Unmatched passwords stop submission", () => {
+    fillExcept({verifyPassword: "!1+A+Tree+Grows+in+Brooklyn+2!"})
+      .should("be.disabled");
   });
 });
 
@@ -69,6 +83,4 @@ describe('Test phone number field submission', () => {
   it("To short phone number stops submission", () => {
     fillExcept({phone: "555555555"}).should("be.disabled");
   });
-});
-
 });

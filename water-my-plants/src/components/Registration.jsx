@@ -92,16 +92,23 @@ export default function Registration (props) {
     // turn off abortEarly to get all errors, not just the first one
     validationSchema.validate(formValues, {abortEarly: false})
       .then(() => {
-        setValidationErrors(emptyErrors);
+        // check for weak password here because .catch won't run if
+        // the weak password is the only error
+        if (formValues.passwordScore < 3)
+          setValidationErrors({password: "Too weak"});
+        else
+          setValidationErrors(emptyErrors);
       })
 
       .catch((error) => {
         // build new errors object one error at a time
         const errors = {};
-        error.inner.forEach((error) => errors[error.path] = error.message);
 
-        if (formValues.password && formValues.passwordScore < 3)
+        // check for weak password separately, because yup don't know how
+        if (formValues.passwordScore < 3)
           errors.password = "Too weak";
+
+        error.inner.forEach((error) => errors[error.path] = error.message);
 
         setValidationErrors(errors);
       });
