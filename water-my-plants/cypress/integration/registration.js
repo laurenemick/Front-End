@@ -44,4 +44,22 @@ describe('Test username field submission', () => {
   });
 });
 
+describe('Test email field submission', () => {
+  it('Missing address stops submission', () => {
+    fillExcept({email: ""}).should("be.disabled");
+  });
+  it('No domain in address stops submission', () => {
+    fillExcept({email: "plantuser"}).should("be.disabled");
+  });
+  it('Missing domain name stops submission', () => {
+    fillExcept({email: "plantuser@"}).should("be.disabled");
+  });
+  it('No top level domain stops submission', () => {
+    fillExcept({email: "plantuser@waterme"}).should("be.disabled");
+  });
+  it('No lower level domain stops submission', () => {
+    fillExcept({email: "plantuser@.com"}).should("be.disabled");
+  });
+});
+
 });
