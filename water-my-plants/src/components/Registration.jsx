@@ -33,10 +33,7 @@ const styleDefinition = makeStyles(theme => ({
 }));
 
 const validationSchema = yup.object().shape({
-  personalName: yup
-    .string()
-    .required('Required'),
-  surname: yup
+  username: yup
     .string()
     .required('Required'),
   email: yup
@@ -59,8 +56,7 @@ const validationSchema = yup.object().shape({
 
 class NewUser {
   constructor (formValues) {
-    this.personalName = formValues.personalName;
-    this.surname = formValues.surname;
+    this.username = formValues.username;
     this.email = formValues.email;
     this.mobilePhone = formValues.mobilePhone;
     this.password = formValues.password;
@@ -69,8 +65,7 @@ class NewUser {
 
 // default form values - immutable
 const emptyForm = {
-  personalName: "",
-  surname: "",
+  username: "",
   email: "",
   mobilePhone: "",
   password: "",
@@ -146,22 +141,13 @@ export default function Registration (props) {
         <CardContent>
           <div>
             <TextField
-              id="personal-name-field"
+              id="username-field"
               className={styles.textField}
-              label={formatNameWithError("personalName", "Personal Name")}
-              name = "personalName"
+              label={formatNameWithError("username", "Username")}
+              name = "username"
               type = "text"
               value = {formValues.personalName}
               onChange = {(event) => onTextChange("personalName", event)} />
-            <TextField
-              id="surname-field"
-              className={styles.textField}
-              label={formatNameWithError("surname", "Surname")}
-              name = "surname"
-              type = "text"
-              value = {formValues.surname}
-              onChange = {(event) => onTextChange("surname", event)}
-            />
           </div>
           <br />
           <div>
