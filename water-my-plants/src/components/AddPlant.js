@@ -36,6 +36,7 @@ const AddPlant = () => {
                 console.log(res.data)
                 getPlants()
                 setIsUpdated(true)
+                setNewPlant(initialPlant)
             })
             .catch(err => console.log(err.message));
     };

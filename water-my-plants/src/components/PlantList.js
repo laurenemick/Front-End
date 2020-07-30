@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "345px",
     backgroundColor: "white",
-    maxHeight: "600px",
+    maxHeight: "800px",
   },
   media: {
     height: 0,
@@ -51,13 +51,15 @@ const PlantList = () => {
   const [plantToEdit, setPlantToEdit] = useState(initialPlant);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+
+//   const handleExpandClick = () => {
+//     setExpanded(!expanded);
+//   };
 
   const editPlant = (plant) => {
     setEditing(true);
     setPlantToEdit(plant);
+    setExpanded(!expanded);
   };
 
   const saveEdit = (e) => {
@@ -101,11 +103,11 @@ const PlantList = () => {
               <Card className={classes.root}>
                 <CardHeader
                   title={plant.nickname}
-                  subheader={plant.species} //plants.species?
+                  subheader={plant.species}
                 />
                 <CardMedia
                   className={classes.media}
-                  image={plant.imageurl} //plants.img
+                  image={plant.imageurl} 
                 />
                 <CardContent>
                   <Typography
@@ -121,7 +123,7 @@ const PlantList = () => {
                     className={clsx(classes.expand, {
                       [classes.expandOpen]: expanded,
                     })}
-                    onClick={handleExpandClick}
+                    onClick={() => editPlant(plant)}
                     aria-expanded={expanded}
                     aria-label="show more"
                   >
@@ -131,63 +133,61 @@ const PlantList = () => {
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <CardContent>
                     <Typography paragraph>
-                      <Button onClick={() => editPlant(plant)}>Edit</Button>
+                      {/* <Button onClick={() => editPlant(plant)}>Edit</Button> */}
                       <Button onClick={() => deletePlant(plant)}>Delete</Button>
+                      <div>
+                        {editing && (
+                            <form onSubmit={saveEdit}>
+                                <Card>
+                                    <CardContent>
+                                        <TextField
+                                        label = "nickname"
+                                        type="text"
+                                        name="nickname"
+                                        value={plantToEdit.nickname}
+                                        onChange={handleChange}
+                                        />         
+                                        <TextField
+                                        label ="Species"
+                                        type="text"
+                                        name="species"
+                                        value={plantToEdit.species}
+                                        onChange={handleChange}
+                                        />
+                                        <br />
+                                        <TextField
+                                        label ="h20 Frequency"
+                                        type="text"
+                                        name="h2ofrequency"
+                                        value={plantToEdit.h2ofrequency}
+                                        onChange={handleChange}
+                                        />
+                                        <TextField
+                                        label ="Image URL"
+                                        type="text"
+                                        name="image"
+                                        value={plantToEdit.imageurl}
+                                        onChange={handleChange}
+                                        />
+                                        <br />
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button>Save</Button>
+                                        <Button onClick={() => setEditing(false)}>Cancel</Button>
+                                    </CardActions>
+                                </Card>
+                            </form> 
+                        )}
+                      </div>
                     </Typography>
                   </CardContent>
                 </Collapse>
               </Card>
+              <br />
             </div>
           ))
         )}
       </div>
-      {editing && (
-        <form onSubmit={saveEdit}>
-            <Card>
-          <CardContent>
-            <TextField
-             label = "nickname"
-              type="text"
-              name="nickname"
-              value={plantToEdit.nickname}
-              onChange={handleChange}
-            />         
-            
-            <TextField
-            label ="Species"
-              type="text"
-              name="species"
-              value={plantToEdit.species}
-              onChange={handleChange}
-            />
-          
-          <br />
-          
-            <TextField
-            label ="h20 Frequency"
-              type="text"
-              name="h2ofrequency"
-              value={plantToEdit.h2ofrequency}
-              onChange={handleChange}
-            />
-          
-            <TextField
-            label ="Image URL"
-              type="text"
-              name="image"
-              value={plantToEdit.imageurl}
-              onChange={handleChange}
-            />
-          <br />
-          </CardContent>
-          <CardActions>
-          <Button>Save</Button>
-          <Button onClick={() => setEditing(false)}>Cancel</Button>
-          </CardActions>
-          </Card>
-        </form>
-        
-      )}
     </div>
   );
 };
