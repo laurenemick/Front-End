@@ -7,7 +7,7 @@ import Container from "@material-ui/core/Container";
 // Components
 import Dashboard from './components/Dashboard';
 import NavBar from "./components/NavBar";
-import Login from "./components/Login.js";
+import Login from "./components/Login";
 import Registration from "./components/Registration";
 // import About from './components/About';
 // import MarketingPage from './MarketingPage';
