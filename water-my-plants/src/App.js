@@ -9,8 +9,6 @@ import Dashboard from './components/Dashboard';
 import NavBar from "./components/NavBar";
 import Login from "./components/Login.js";
 import Registration from "./components/Registration";
-// import About from './components/About';
-// import MarketingPage from './MarketingPage';
 
 // Utils
 import { PrivateRoute } from './utils/PrivateRoute';
@@ -22,18 +20,14 @@ export default function App() {
     <div className="App">
       <NavBar />
       <CssBaseline />
-      <Container style={{ maxWidth: "lg" }}>
-        <Typography
-          component="div"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            backgroundColor: "#cfe8fc",
-            height: "100vh",
-            opacity: "80%",
-          }}
-        >
-      <div className='App'>
+      <Container style={{
+        display: "flex",
+        justifyContent: "center",
+        backgroundColor: "#DBF9F0",
+        height: "95vh",
+        opacity: "90%",
+        maxWidth: 'lg',
+      }}>
         <Switch>
           <PrivateRoute exact path='/' component={Dashboard} />
           <Route exact path="/login">
@@ -42,12 +36,13 @@ export default function App() {
           <Route exact path="/registration">
             <Registration />
           </Route>
-          {/*<Route exact path='/about' component={About} />
-          <Route exact path='/home' component={MarketingPage} /> */}
         </Switch>
-      </div>
-        </Typography>
       </Container>
+      <footer position="fixed"
+              style={{ background: "#16302B",
+                       boxShadow: "none",
+                       height:'5vh'}}>
+      </footer>
     </div>
   );
 }
