@@ -1,122 +1,194 @@
-import React, { useState, useContext } from 'react';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
-import { PlantContext } from '../contexts/PlantContext';
+import React, { useState, useContext } from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { PlantContext } from "../contexts/PlantContext";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import TextField from "@material-ui/core/TextField/TextField"
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import Collapse from "@material-ui/core/Collapse";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Button from "@material-ui/core/Button/Button"
 
 const initialPlant = {
-    plantid: 0,
-    nickname: '',
-    species: '',
-    h2ofrequency:'',
-    imageurl: ''
-}
+  plantid: 0,
+  nickname: "",
+  species: "",
+  h2ofrequency: "",
+  imageurl: "",
+};
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "345px",
+    backgroundColor: "white",
+    maxHeight: "600px",
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%", // 16:9
+  },
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: "rotate(180deg)",
+  },
+}));
 
 const PlantList = () => {
-    const { plantList, setPlantList, setIsUpdated } = useContext(PlantContext)
-    const [editing, setEditing] = useState(false)
-    const [plantToEdit, setPlantToEdit] = useState(initialPlant)
+  const { plantList, setPlantList, setIsUpdated } = useContext(PlantContext);
+  const [editing, setEditing] = useState(false);
+  const [plantToEdit, setPlantToEdit] = useState(initialPlant);
+  const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(false);
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
-    const editPlant = plant => {
-        setEditing(true);
-        setPlantToEdit(plant);
-    };
+  const editPlant = (plant) => {
+    setEditing(true);
+    setPlantToEdit(plant);
+  };
 
-    const saveEdit = e => {
-        e.preventDefault();
+  const saveEdit = (e) => {
+    e.preventDefault();
 
-        axiosWithAuth()
-            .put(`/plants/plant/${plantToEdit.plantid}`, plantToEdit)
-            .then(res => {
-                setPlantToEdit(plantToEdit)
-                setIsUpdated(true)
-            })
-            .catch(err => console.log(err))
-    }
+    axiosWithAuth()
+      .put(`/plants/plant/${plantToEdit.plantid}`, plantToEdit)
+      .then((res) => {
+        setPlantToEdit(plantToEdit);
+        setIsUpdated(true);
+      })
+      .catch((err) => console.log(err));
+  };
 
-    const deletePlant = plant => {
-        axiosWithAuth()
-            .delete(`plants/plant/${plant.plantid}`)
-            .then(res => {
-                const newArr = plantList.filter(f => f.plantid !== plant.plantid)
-                setPlantList(newArr)
-            })
-            .catch(err => console.log(err))
-    }
+  const deletePlant = (plant) => {
+    axiosWithAuth()
+      .delete(`plants/plant/${plant.plantid}`)
+      .then((res) => {
+        const newArr = plantList.filter((f) => f.plantid !== plant.plantid);
+        setPlantList(newArr);
+      })
+      .catch((err) => console.log(err));
+  };
 
-    const handleChange = e => {
-        setPlantToEdit({
-            ...plantToEdit,
-            [e.target.name]: e.target.value
-        })
-    }
+  const handleChange = (e) => {
+    setPlantToEdit({
+      ...plantToEdit,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    return (
-        <div className='plant-container'>
-            <h3>My Plants</h3>
-            <div className='plant-list'>
-                {
-                    (!plantList ? <div /> :
-                        plantList.map(plant => (
-                            <div key={plant.plantid} className='plant'>
-                                <h4>{plant.nickname}</h4>
-                                <p>{plant.species}</p>
-                                <p>{plant.h2ofrequency}</p>
-                                <img src={plant.imageurl} alt={plant.nickname} />
-                                <br />
-                                <br />
-                                <button onClick={() => editPlant(plant)}>Edit</button>
-                                <button onClick={() => deletePlant(plant)}>Delete</button>
-                                <br />
-                                <br />
-                            </div>
-                        ))
-                    )
-                }
+  return (
+    <div className="plant-container">
+      <h3>My Plants</h3>
+      <div className="plant-list">
+        {!plantList ? (
+          <div />
+        ) : (
+          plantList.map((plant) => (
+            <div key={plant.plantid} className="plant">
+              <Card className={classes.root}>
+                <CardHeader
+                  title={plant.nickname}
+                  subheader={plant.species} //plants.species?
+                />
+                <CardMedia
+                  className={classes.media}
+                  image={plant.imageurl} //plants.img
+                />
+                <CardContent>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {plant.h2ofrequency}
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <IconButton
+                    className={clsx(classes.expand, {
+                      [classes.expandOpen]: expanded,
+                    })}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="show more"
+                  >
+                    <ExpandMoreIcon />
+                  </IconButton>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                  <CardContent>
+                    <Typography paragraph>
+                      <Button onClick={() => editPlant(plant)}>Edit</Button>
+                      <Button onClick={() => deletePlant(plant)}>Delete</Button>
+                    </Typography>
+                  </CardContent>
+                </Collapse>
+              </Card>
             </div>
-            {
-                editing && (
-                    <form onSubmit={saveEdit}>
-                        <h3>Edit Plant</h3>
-                        <label>Nickname:
-                            <input
-                                type='text'
-                                name='nickname'
-                                value={plantToEdit.nickname}
-                                onChange={handleChange}
-                            />
-                        </label>
-                        <br />
-                        <label>Species:
-                            <input
-                                type='text'
-                                name='species'
-                                value={plantToEdit.species}
-                                onChange={handleChange}
-                            />
-                        </label>
-                        <br />
-                        <label>h20 Frequency:
-                            <input
-                                type='text'
-                                name='h2ofrequency'
-                                value={plantToEdit.h2ofrequency}
-                                onChange={handleChange}
-                            />
-                        </label>
-                        <br />
-                        <label>Image:
-                            <input
-                                type='text'
-                                name='image'
-                                value={plantToEdit.imageurl}
-                                onChange={handleChange}
-                            />
-                        </label>
-                        <button>Save</button>
-                        <button onClick={() => setEditing(false)}>Cancel</button>
-                    </form>
-                )
-            }
-        </div>
-    )
-}
+          ))
+        )}
+      </div>
+      {editing && (
+        <form onSubmit={saveEdit}>
+            <Card>
+          <CardContent>
+            <TextField
+             label = "nickname"
+              type="text"
+              name="nickname"
+              value={plantToEdit.nickname}
+              onChange={handleChange}
+            />         
+            
+            <TextField
+            label ="Species"
+              type="text"
+              name="species"
+              value={plantToEdit.species}
+              onChange={handleChange}
+            />
+          
+          <br />
+          
+            <TextField
+            label ="h20 Frequency"
+              type="text"
+              name="h2ofrequency"
+              value={plantToEdit.h2ofrequency}
+              onChange={handleChange}
+            />
+          
+            <TextField
+            label ="Image URL"
+              type="text"
+              name="image"
+              value={plantToEdit.imageurl}
+              onChange={handleChange}
+            />
+          <br />
+          </CardContent>
+          <CardActions>
+          <Button>Save</Button>
+          <Button onClick={() => setEditing(false)}>Cancel</Button>
+          </CardActions>
+          </Card>
+        </form>
+        
+      )}
+    </div>
+  );
+};
 export default PlantList;

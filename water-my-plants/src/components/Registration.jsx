@@ -170,6 +170,7 @@ export default function Registration (props) {
               fullWidth
               margin="normal"
               variant="outlined"
+
               style={{ margin: 8 }} />
           <br />
             <TextField

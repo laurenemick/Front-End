@@ -3,6 +3,12 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { PlantContext } from '../contexts/PlantContext';
 import { UserContext } from '../contexts/UserContext';
 import styled from "styled-components";
+import TextField from "@material-ui/core/TextField/TextField"
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
 
 const initialPlant = {
     nickname: '',
