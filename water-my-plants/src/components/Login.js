@@ -106,7 +106,7 @@ export default function LogIn() {
           <CardContent>
             <div>
               <TextField
-                id="outlined-full-width"
+                id="email-field"
                 label="Email"
                 type="email"
                 name="email"
@@ -122,7 +122,7 @@ export default function LogIn() {
             </div>
             <div>
               <TextField
-                id="margin-none"
+                id="password-field"
                 placeholder="********"
                 className={classes.textField}
                 helperText="Password"
