@@ -3,6 +3,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { PlantContext } from "../contexts/PlantContext";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
+import TextField from "@material-ui/core/TextField/TextField"
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -144,45 +145,41 @@ const PlantList = () => {
       {editing && (
         <form onSubmit={saveEdit}>
           <h3>Edit Plant</h3>
-          <label>
-            Nickname:
-            <input
+          
+            <TextField
+             label = "nickname"
               type="text"
               name="nickname"
               value={plantToEdit.nickname}
               onChange={handleChange}
-            />
-          </label>
-          <br />
-          <label>
-            Species:
-            <input
+            />         
+            
+            <TextField
+            label ="Species"
               type="text"
               name="species"
               value={plantToEdit.species}
               onChange={handleChange}
             />
-          </label>
+          
           <br />
-          <label>
-            h20 Frequency:
-            <input
+          
+            <TextField
+            label ="h20 Frequency"
               type="text"
               name="h2ofrequency"
               value={plantToEdit.h2ofrequency}
               onChange={handleChange}
             />
-          </label>
-          <br />
-          <label>
-            Image:
-            <input
+          
+            <TextField
+            label ="Image URL"
               type="text"
               name="image"
               value={plantToEdit.imageurl}
               onChange={handleChange}
             />
-          </label>
+          <br />
           <Button>Save</Button>
           <Button onClick={() => setEditing(false)}>Cancel</Button>
         </form>
