@@ -119,18 +119,15 @@ export default function LogIn() {
           <CardContent>
             <div>
               <TextField
-                id="outlined-full-width"
+                id="username-field"
+                className={classes.textField}
                 label="username"
                 type="username"
                 name="username"
                 value={lFormValues.username}
                 onChange={onChange}
-                style={{ margin: 8 }}
                 placeholder="RomanPlantski"
                 margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
               />
             </div>
             <div>
