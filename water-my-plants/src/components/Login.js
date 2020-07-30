@@ -116,7 +116,6 @@ export default function LogIn() {
     <div className={classes.root}>
       <Card className={classes.cardroot} variant="outlined">
         <h1>Log In</h1>
-        <form onSubmit={onSubmit}>
           <CardContent>
             <div>
               <TextField
@@ -136,7 +135,7 @@ export default function LogIn() {
             </div>
             <div>
               <TextField
-                id="margin-none"
+                id="password-field"
                 placeholder="********"
                 className={classes.textField}
                 helperText="Password"
@@ -152,11 +151,13 @@ export default function LogIn() {
             </div>
           </CardContent>
           <CardActions>
-            <Button id="submitBtn" type="submit" disabled={disabled}>
+            <Button id="submit-button"
+                    variant="contained"
+                    onClick={onSubmit}
+                    disabled={disabled}>
               Log In
             </Button>
           </CardActions>
-        </form>
       </Card>
     </div>
   );
