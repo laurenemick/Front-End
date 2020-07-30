@@ -51,6 +51,7 @@ const validationSchema = yup.object().shape({
     .required("Required"),
   password: yup
     .string()
+    .max(320, "Why so long?")
     .required("Required"),
   verifyPassword: yup
     .string()
