@@ -119,7 +119,8 @@ export default function LogIn() {
           <CardContent>
             <div>
               <TextField
-                id="outlined-full-width"
+                id="username-field"
+                className={classes.textField}
                 label="username"
                 type="username"
                 name="username"
@@ -127,8 +128,8 @@ export default function LogIn() {
                 onChange={onChange}
                 placeholder="RomanPlantski"
                 margin="normal"
-                className={classes.textField}
-                
+
+
               />
             </div>
             <div>

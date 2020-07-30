@@ -75,11 +75,6 @@ export default function NavBar() {
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <Link to="/login" style={{ textDecoration: "none" }}>
-                Log In
-              </Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
               <a
                 href="https://water-me.netlify.app/marketing.html"
                 style={{ textDecoration: "none" }}
