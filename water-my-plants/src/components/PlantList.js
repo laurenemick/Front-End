@@ -130,7 +130,6 @@ const PlantList = () => {
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <CardContent>
-                    <Typography paragraph>Care Instructions:</Typography>
                     <Typography paragraph>
                       <Button onClick={() => editPlant(plant)}>Edit</Button>
                       <Button onClick={() => deletePlant(plant)}>Delete</Button>
@@ -145,7 +144,6 @@ const PlantList = () => {
       {editing && (
         <form onSubmit={saveEdit}>
             <Card>
-          <CardHeader title = "Edit Plant"></CardHeader>
           <CardContent>
             <TextField
              label = "nickname"
