@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
     background-image: url('assets/bgImage.jpg');
@@ -5,8 +6,7 @@ body {
     background-attachment: fixed;
     background-position: center;
     background-size: 100vw 80vh;
-  
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;

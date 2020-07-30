@@ -7,8 +7,7 @@ export default function BigButton() {
   return (
     <>
       <Button id = "signUpButton"
-        style={{ color: "#210124", maxHeight: "2.5rem", alignSelf: "center" }}
-      >
+        style={{ color: "#210124", maxHeight: "2.5rem", alignSelf: "center" }}>
         <Link to="/registration" style={{ textDecoration: "none" }}>
           Sign Up
         </Link>

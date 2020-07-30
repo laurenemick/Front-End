@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import * as yup from "yup";
+import React from "react";
 import { Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import LogIn from "./components/Login";
@@ -7,7 +6,6 @@ import SignUp from "./components/SignUp";
 import BigButton from "./components/Button";
 import Success from "./components/Success";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 
 function App() {
@@ -16,18 +14,15 @@ function App() {
     <div className="App">
       <NavBar />
       <CssBaseline />
-
-      <Container style={{ maxWidth: "lg" }}>
-        <Typography
-          component="div"
+      <Container component="div"
           style={{
             display: "flex",
             justifyContent: "center",
             backgroundColor: "#cfe8fc",
             height: "100vh",
-            opacity: "80%",
-          }}
-        >
+            opacity: "90%",
+            maxWidth: 'lg',
+          }}>
           <Route exact path="/">
             <BigButton />
           </Route>
@@ -43,7 +38,6 @@ function App() {
           <Route path="/welcome">
             <Success />
           </Route>
-        </Typography>
       </Container>
     </div>
   );
