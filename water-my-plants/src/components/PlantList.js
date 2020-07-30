@@ -144,8 +144,9 @@ const PlantList = () => {
       </div>
       {editing && (
         <form onSubmit={saveEdit}>
-          <h3>Edit Plant</h3>
-          
+            <Card>
+          <CardHeader title = "Edit Plant"></CardHeader>
+          <CardContent>
             <TextField
              label = "nickname"
               type="text"
@@ -180,9 +181,14 @@ const PlantList = () => {
               onChange={handleChange}
             />
           <br />
+          </CardContent>
+          <CardActions>
           <Button>Save</Button>
           <Button onClick={() => setEditing(false)}>Cancel</Button>
+          </CardActions>
+          </Card>
         </form>
+        
       )}
     </div>
   );

@@ -1,6 +1,33 @@
 import React, { useState, useContext } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { UserContext } from '../contexts/UserContext';
+import TextField from "@material-ui/core/TextField/TextField"
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import { makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles((theme) => ({
+    root: {
+      width: "345px",
+      backgroundColor: "white",
+      maxHeight: "600px",
+    },
+    media: {
+      height: 0,
+      paddingTop: "56.25%", // 16:9
+    },
+    expand: {
+      transform: "rotate(0deg)",
+      marginLeft: "auto",
+      transition: theme.transitions.create("transform", {
+        duration: theme.transitions.duration.shortest,
+      }),
+    },
+    expandOpen: {
+      transform: "rotate(180deg)",
+    },
+  }));
 
 const UpdateUser = () => {
     const { userInfo, setUserInfo, setIsUpdated } = useContext(UserContext)
@@ -51,14 +78,20 @@ const UpdateUser = () => {
 
     return (
         <div className='user-container'>
-            <h3>Profile</h3>
+            <Card>
+            <CardHeader title = "Profile"/>
             <div className='user-info'>
+                <CardContent>
                 <h4>{userInfo.username}</h4>
                 <p>{userInfo.email}</p>
                 <p>{userInfo.phone}</p>
+                </CardContent>
+                <CardActions>
                 <button onClick={() => editUser(userInfo)}>Edit</button>
                 <button onClick={() => deleteUser(userInfo)}>Delete</button>
+                </CardActions>
             </div>
+            </Card>
             {
                 editing && (
                     <form onSubmit={saveEdit}>
