@@ -80,6 +80,7 @@ export default function LogIn() {
 
   const onSubmit = (event) => {
     event.preventDefault();
+      localStorage.removeItem('token')
       const user = {
         username: lFormValues.username.trim(),
         password: lFormValues.password.trim()

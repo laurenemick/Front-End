@@ -54,22 +54,22 @@ const PlantList = () => {
             <h3>My Plants</h3>
             <div className='plant-list'>
                 {
-                    plantList.map(plant => (
-                        <div key={plant.id} className='plant'>
-                            <h4>{plant.nickname}</h4>
-                            <p>{plant.species}</p>
-                            <p>{plant.h2oFrequency}</p>
-                            <img src={plant.imageurl} alt={plant.nickname} />
-                            <br />
-                            <br />
-                            <button onClick={() => editPlant(plant)}>Edit</button>
-                            <br />
-                            <br />
-                            <button onClick={() => deletePlant(plant)}>Delete</button>
-                            <br />
-                            <br />
-                        </div>
-                    ))
+                    (!plantList ? <div /> :
+                        plantList.map(plant => (
+                            <div key={plant.id} className='plant'>
+                                <h4>{plant.nickname}</h4>
+                                <p>{plant.species}</p>
+                                <p>{plant.h2oFrequency}</p>
+                                <img src={plant.imageurl} alt={plant.nickname} />
+                                <br />
+                                <br />
+                                <button onClick={() => editPlant(plant)}>Edit</button>
+                                <button onClick={() => deletePlant(plant)}>Delete</button>
+                                <br />
+                                <br />
+                            </div>
+                        ))
+                    )
                 }
             </div>
             {

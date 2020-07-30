@@ -9,6 +9,7 @@ import PasswordStrengthBar from 'react-password-strength-bar';
 import MuiPhoneInput from 'material-ui-phone-number';
 import * as yup from 'yup';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axios from 'axios';
 
 // courtesy of style master Ava
 const styleDefinition = makeStyles(theme => ({
@@ -141,8 +142,8 @@ export default function Registration (props) {
   function submitForm() {
     // alert("submitted");
     const submittedUser = new NewUser(formValues)
-    axiosWithAuth()
-      .post('/registeruser', submittedUser)
+    axios
+      .post('https://nickussery-watermyplants.herokuapp.com/registeruser', submittedUser)
       .then(res => console.log(res))
       .catch(err => console.log(err))
   }
