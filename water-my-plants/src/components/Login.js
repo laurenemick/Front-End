@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import * as yup from 'yup';
-import axios from 'axios';
+// import axios from 'axios';
 import LFormSchema from '../verification/loginFormSchema';
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -8,13 +8,15 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
 
 const loginValues = {
-  email: '',
+  username: '',
   password: ''
 }
 const loginError = {
-  email: '',
+  username: '',
   password: ''
 }
 const initialDisabled = true;
@@ -45,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function LogIn() {
-
+  const history = useHistory();
   const classes = useStyles();
   const [disabled, setDisabled] = useState(initialDisabled);
   const [lFormValues, setLFormValues] = useState(loginValues);
@@ -78,25 +80,36 @@ export default function LogIn() {
 
   const onSubmit = (event) => {
     event.preventDefault();
+      localStorage.removeItem('token')
       const user = {
-        email: lFormValues.email.trim(),
+        username: lFormValues.username.trim(),
         password: lFormValues.password.trim()
       }
-      axios
-      .post(`https://nickussery-watermyplants.herokuapp.com/login`, user)
-      .then(res => {
-        setLFormValues(loginValues)
-      })
-      .catch(e => {
-        throw e
-      })
-
+      axiosWithAuth()
+        .post('/login', `grant_type=password&username=${user.username}&password=${user.password}`, {
+          headers: {
+            Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
+            'Content-Type': 'application/x-www-form-urlencoded' 
+          }
+        })
+        .then(res => {
+          console.log(res)
+          localStorage.setItem('token', res.data.access_token)
+          history.push('/')
+        })
+        .catch(e => {
+          throw `Everything is broken forever: ${e}`
+        })
   };
 
   useEffect(() => {
     LFormSchema.isValid(lFormValues).then(valid => {
       setDisabled(!valid)
     })
+  }, [lFormValues])
+
+  useEffect(() => {
+    console.log(lFormValues)
   }, [lFormValues])
 
   return (
@@ -106,11 +119,11 @@ export default function LogIn() {
           <CardContent>
             <div>
               <TextField
-                id="email-field"
-                label="Email"
-                type="email"
-                name="email"
-                value={lFormValues.email}
+                id="outlined-full-width"
+                label="username"
+                type="username"
+                name="username"
+                value={lFormValues.username}
                 onChange={onChange}
                 style={{ margin: 8 }}
                 placeholder="iNeedWater@hydrate.com"
@@ -133,7 +146,7 @@ export default function LogIn() {
               />
             </div>
             <div className="errors">
-              <div>{lFormErrors.email}</div>
+              <div>{lFormErrors.username}</div>
               <div>{lFormErrors.password}</div>
             </div>
           </CardContent>

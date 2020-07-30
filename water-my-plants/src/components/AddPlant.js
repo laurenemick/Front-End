@@ -1,37 +1,35 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { PlantContext } from '../contexts/PlantContext';
+import { UserContext } from '../contexts/UserContext';
 import styled from "styled-components";
 
 const initialPlant = {
     nickname: '',
     species: '',
-    h2oFrequency:'',
+    h2ofrequency:'',
     imageurl: ''
 }
 
 const AddPlant = () => {
-    const { getPlants, plantList, setPlantList, setIsUpdated } = useContext(PlantContext)
+    const { isUpdated, getPlants, plantList, setPlantList, setIsUpdated } = useContext(PlantContext)
+    const { userInfo } = useContext(UserContext)
     const [newPlant, setNewPlant] = useState(initialPlant)
 
     const addPlant = e => {
         e.preventDefault();
         axiosWithAuth()
-            .post('/plants/plant', newPlant) 
-            // {
-            //     id: new Date(),
-            //     nickname: newPlant.nickname,
-            //     species: newPlant.species,
-            //     h2oFrequency: newPlant.h2oFrequency,
-            //     imageurl: newPlant.imageurl
-            // })
+            .post('/plants/plant', {
+                plantid: userInfo.id,
+                nickname: newPlant.nickname,
+                species: newPlant.species,
+                h2ofrequency: newPlant.h2ofrequency,
+                imageurl: newPlant.imageurl
+            })
             .then(res => {
-                setPlantList([
-                    ...plantList,
-                    newPlant
-                ])
-                setIsUpdated(true)
+                console.log(res.data)
                 getPlants()
+                setIsUpdated(true)
             })
             .catch(err => console.log(err.message));
     };
@@ -42,6 +40,10 @@ const AddPlant = () => {
             [e.target.name]: e.target.value
         })
     }
+
+    useEffect(() => {
+        getPlants();
+    }, [isUpdated]) 
 
     return (
         <div className='new-plant'>
@@ -69,8 +71,8 @@ const AddPlant = () => {
                 <Label>h20 Frequency:&nbsp;
                 <Input
                     type='text'
-                    name='h2oFrequency'
-                    value={newPlant.h2oFrequency}
+                    name='h2ofrequency'
+                    value={newPlant.h2ofrequency}
                     onChange={handleChange}
                 />
                 </Label>

@@ -2,21 +2,21 @@ import React, { useState, useContext } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { UserContext } from '../contexts/UserContext';
 
-const initialUser = {
-    username: '',
-    email: '',
-    password:'',
-    phone: ''
-}
-
 const UpdateUser = () => {
     const { userInfo, setUserInfo, setIsUpdated } = useContext(UserContext)
+    console.log(userInfo)
     const [editing, setEditing] = useState(false)
-    const [user, setUser] = useState(initialUser)
+    const [user, setUser] = useState({
+        id: userInfo.id,
+        username: userInfo.username,
+        email: userInfo.email,
+        password: userInfo.password,
+        phone: userInfo.phone
+    })
 
     const editUser = user => {
         setEditing(true);
-        setUser(user);
+        setUser({...user, password: ''});
     };
 
     const saveEdit = e => {
@@ -25,15 +25,15 @@ const UpdateUser = () => {
         axiosWithAuth()
             .put(`users/user/${user.id}`, user)
             .then(res => {
-                setUser(user)
+                setUserInfo(user)
                 setIsUpdated(true)
             })
             .catch(err => console.log(err.message));
     }
     
-    const deleteUser = () => {
+    const deleteUser = user => {
         axiosWithAuth()
-            .delete(`users/user/${user.id}`)
+            .delete(`users/user/${userInfo.id}`)
             .then(res => {
                 const newArr = userInfo.filter(f => f.id !== user.id)
                 setUserInfo(newArr)
@@ -53,31 +53,24 @@ const UpdateUser = () => {
         <div className='user-container'>
             <h3>Profile</h3>
             <div className='user-info'>
-                {
-                    userInfo.map(user => (
-                        <div key={user.id} className='user'>
-                            <h4>{user.username}</h4>
-                            <p>{user.password}</p>
-                            <p>{user.email}</p>
-                            <p>{user.phone}</p>
-                            <button onClick={() => editUser(user)}>Edit</button>
-                            <button onClick={() => deleteUser(user)}>Delete</button>
-                        </div>
-                    ))
-                }
+                <h4>{userInfo.username}</h4>
+                <p>{userInfo.email}</p>
+                <p>{userInfo.phone}</p>
+                <button onClick={() => editUser(userInfo)}>Edit</button>
+                <button onClick={() => deleteUser(userInfo)}>Delete</button>
             </div>
             {
                 editing && (
                     <form onSubmit={saveEdit}>
                         <h3>Edit Profile</h3>
-                        <label>Username:
+                        {/* <label>Username:
                             <input
                                 type='text'
                                 name='username'
                                 value={user.username}
                                 onChange={handleChange}
                             />
-                        </label>
+                        </label> */}
                         <br />
                         <label>Password:
                             <input

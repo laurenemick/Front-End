@@ -20,8 +20,8 @@ const Dashboard = () => {
         return axiosWithAuth()
             .get('/users/myinfo')
             .then(res => {
-                console.log(res)
-                setUserInfo(res)
+                console.log(res.data)
+                setUserInfo(res.data)
             })
             .catch(err => console.log(err.message));
     }
@@ -47,16 +47,10 @@ const Dashboard = () => {
 
     return (
         <UserContext.Provider value = {{ userInfo, setUserInfo, setIsUpdated }}>
-            <PlantContext.Provider value = {{ getPlants, plantList, setPlantList, setIsUpdated }}>
-                <Route>
+            <PlantContext.Provider value = {{ isUpdated, getPlants, plantList, setPlantList, setIsUpdated }}>
                     <UpdateUser />
-                </Route>
-                <Route>
                     <AddPlant/>
-                </Route>
-                <Route>
                     <PlantList />
-                </Route>
             </PlantContext.Provider>
         </UserContext.Provider>
     )
