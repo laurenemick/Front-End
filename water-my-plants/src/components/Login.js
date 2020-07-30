@@ -88,9 +88,9 @@ export default function LogIn() {
         setLFormValues(loginValues)
       })
       .catch(e => {
-        throw `Everything is broken forever: ${e}`
+        throw e
       })
-    
+
   };
 
   useEffect(() => {
@@ -103,7 +103,6 @@ export default function LogIn() {
     <div className={classes.root}>
       <Card className={classes.cardroot} variant="outlined">
         <h1>Log In</h1>
-        <form onSubmit={onSubmit}>
           <CardContent>
             <div>
               <TextField
@@ -143,7 +142,6 @@ export default function LogIn() {
               Log In
             </Button>
           </CardActions>
-        </form>
       </Card>
     </div>
   );
