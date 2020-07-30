@@ -9,7 +9,7 @@ const LFormSchema = yup.object().shape({
 
   password: yup
     .string()
-    .max(15, "Your password is too long")
+    .max(320, "Why so long?")
     .required("Password is required"),
 });
 
