@@ -138,7 +138,10 @@ export default function LogIn() {
             </div>
           </CardContent>
           <CardActions>
-            <Button id="submitBtn" type="submit" disabled={disabled}>
+            <Button id="submit-button"
+                    variant="contained"
+                    onClick={onSubmit}
+                    disabled={disabled}>
               Log In
             </Button>
           </CardActions>
