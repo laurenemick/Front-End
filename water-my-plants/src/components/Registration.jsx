@@ -174,7 +174,8 @@ export default function Registration (props) {
                 shrink: true
               }}
               variant="outlined"
-              style={{ margin: 8 }} />
+              style={{ margin: 8 }}
+/>
           </div>
           <br />
           <div>

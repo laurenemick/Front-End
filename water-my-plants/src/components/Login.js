@@ -125,12 +125,10 @@ export default function LogIn() {
                 name="username"
                 value={lFormValues.username}
                 onChange={onChange}
-                style={{ margin: 8 }}
                 placeholder="RomanPlantski"
                 margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
+                className={classes.textField}
+                
               />
             </div>
             <div>
