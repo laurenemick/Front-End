@@ -43,18 +43,17 @@ function NavBar() {
     <div className={classes.root}>
       <AppBar
         position="fixed"
-        style={{ background: "#16302B", boxShadow: "none", height:'10vh'}}
+        style={{ background: "#16302B", boxShadow: "none", height:'7vh'}}
       >
         <Toolbar >
           <IconButton
             edge="start"
             className={classes.menuButton}
-            color="#16302B"
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleClick}
           >
-            <MenuIcon />
+            <MenuIcon style = {{color:'white'}}/>
           </IconButton>
           <Menu
             id="simple-menu"
@@ -100,10 +99,8 @@ function NavBar() {
           </Menu>
 
           <Typography variant="h6" className={classes.title}></Typography>
-          <Link to="/login" style={{ textDecoration: "none" }}>
-            <Button color="#16302B" id="loginBtn">
+          <Link to="/login" style={{ textDecoration: "none", color:"white"  }}>
               Login
-            </Button>
           </Link>
         </Toolbar>
       </AppBar>

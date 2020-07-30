@@ -18,8 +18,8 @@ function App() {
           style={{
             display: "flex",
             justifyContent: "center",
-            backgroundColor: "#cfe8fc",
-            height: "100vh",
+            backgroundColor: "#DBF9F0",
+            height: "95vh",
             opacity: "90%",
             maxWidth: 'lg',
           }}>
@@ -39,6 +39,8 @@ function App() {
             <Success />
           </Route>
       </Container>
+      <footer position="fixed"
+        style={{ background: "#16302B", boxShadow: "none", height:'5vh'}}></footer>
     </div>
   );
 }
