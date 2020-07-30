@@ -141,16 +141,16 @@ export default function Registration (props) {
   // handle form submission
   function submitForm() {
     // alert("submitted");
-    const submittedUser = new NewUser(formValues)
+    const submittedUser = new NewUser(formValues);
     axios
       .post('https://nickussery-watermyplants.herokuapp.com/registeruser', submittedUser)
       .then(res => console.log(res))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }
 
   useEffect(() => {
-    console.log(formValues)
-  }, [formValues])
+    console.log(formValues);
+  }, [formValues]);
 
   return (
     <div className={styles.root}>
