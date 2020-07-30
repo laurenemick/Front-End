@@ -7,7 +7,7 @@ import styled from "styled-components";
 const initialPlant = {
     nickname: '',
     species: '',
-    h2oFrequency:'',
+    h2ofrequency:'',
     imageurl: ''
 }
 
@@ -23,7 +23,7 @@ const AddPlant = () => {
                 plantid: userInfo.id,
                 nickname: newPlant.nickname,
                 species: newPlant.species,
-                h2oFrequency: newPlant.h2oFrequency,
+                h2ofrequency: newPlant.h2ofrequency,
                 imageurl: newPlant.imageurl
             })
             .then(res => {
@@ -71,8 +71,8 @@ const AddPlant = () => {
                 <Label>h20 Frequency:&nbsp;
                 <Input
                     type='text'
-                    name='h2oFrequency'
-                    value={newPlant.h2oFrequency}
+                    name='h2ofrequency'
+                    value={newPlant.h2ofrequency}
                     onChange={handleChange}
                 />
                 </Label>

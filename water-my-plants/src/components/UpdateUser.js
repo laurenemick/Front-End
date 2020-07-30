@@ -16,7 +16,7 @@ const UpdateUser = () => {
 
     const editUser = user => {
         setEditing(true);
-        setUser(user);
+        setUser({...user, password: ''});
     };
 
     const saveEdit = e => {
@@ -31,7 +31,7 @@ const UpdateUser = () => {
             .catch(err => console.log(err.message));
     }
     
-    const deleteUser = () => {
+    const deleteUser = user => {
         axiosWithAuth()
             .delete(`users/user/${userInfo.id}`)
             .then(res => {
@@ -63,14 +63,14 @@ const UpdateUser = () => {
                 editing && (
                     <form onSubmit={saveEdit}>
                         <h3>Edit Profile</h3>
-                        <label>Username:
+                        {/* <label>Username:
                             <input
                                 type='text'
                                 name='username'
                                 value={user.username}
                                 onChange={handleChange}
                             />
-                        </label>
+                        </label> */}
                         <br />
                         <label>Password:
                             <input

@@ -3,9 +3,10 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { PlantContext } from '../contexts/PlantContext';
 
 const initialPlant = {
+    plantid: 0,
     nickname: '',
     species: '',
-    h2oFrequency:'',
+    h2ofrequency:'',
     imageurl: ''
 }
 
@@ -23,7 +24,7 @@ const PlantList = () => {
         e.preventDefault();
 
         axiosWithAuth()
-            .put(`/plants/plant/${plantToEdit.id}`, plantToEdit)
+            .put(`/plants/plant/${plantToEdit.plantid}`, plantToEdit)
             .then(res => {
                 setPlantToEdit(plantToEdit)
                 setIsUpdated(true)
@@ -31,13 +32,12 @@ const PlantList = () => {
             .catch(err => console.log(err))
     }
 
-    const deletePlant = () => {
+    const deletePlant = plant => {
         axiosWithAuth()
-            .delete(`plants/plant/${plantToEdit.id}`)
+            .delete(`plants/plant/${plant.plantid}`)
             .then(res => {
-                const newArr = plantList.filter(f => f.id !== plantToEdit.id)
+                const newArr = plantList.filter(f => f.plantid !== plant.plantid)
                 setPlantList(newArr)
-                setIsUpdated(true)
             })
             .catch(err => console.log(err))
     }
@@ -56,10 +56,10 @@ const PlantList = () => {
                 {
                     (!plantList ? <div /> :
                         plantList.map(plant => (
-                            <div key={plant.id} className='plant'>
+                            <div key={plant.plantid} className='plant'>
                                 <h4>{plant.nickname}</h4>
                                 <p>{plant.species}</p>
-                                <p>{plant.h2oFrequency}</p>
+                                <p>{plant.h2ofrequency}</p>
                                 <img src={plant.imageurl} alt={plant.nickname} />
                                 <br />
                                 <br />
@@ -97,8 +97,8 @@ const PlantList = () => {
                         <label>h20 Frequency:
                             <input
                                 type='text'
-                                name='h2oFrequency'
-                                value={plantToEdit.h2oFrequency}
+                                name='h2ofrequency'
+                                value={plantToEdit.h2ofrequency}
                                 onChange={handleChange}
                             />
                         </label>
