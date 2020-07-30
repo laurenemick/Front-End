@@ -89,7 +89,7 @@ export default function LogIn() {
         .post('/login', `grant_type=password&username=${user.username}&password=${user.password}`, {
           headers: {
             Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
-            'Content-Type': 'application/x-www-form-urlencoded' 
+            'Content-Type': 'application/x-www-form-urlencoded'
           }
         })
         .then(res => {
@@ -126,7 +126,7 @@ export default function LogIn() {
                 value={lFormValues.username}
                 onChange={onChange}
                 style={{ margin: 8 }}
-                placeholder="iNeedWater@hydrate.com"
+                placeholder="RomanPlantski"
                 margin="normal"
                 InputLabelProps={{
                   shrink: true,
