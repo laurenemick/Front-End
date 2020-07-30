@@ -162,7 +162,6 @@ export default function Registration (props) {
           <div>
             <TextField
               id="username-field"
-              className={styles.textField}
               label={formatNameWithError("username", "Username")}
               name = "username"
               type = "text"
@@ -170,14 +169,9 @@ export default function Registration (props) {
               onChange = {(event) => onTextChange("username", event)}
               fullWidth
               margin="normal"
-              InputLabelProps={{
-                shrink: true
-              }}
               variant="outlined"
               style={{ margin: 8 }} />
-          </div>
           <br />
-          <div>
             <TextField
               id="email-field"
               name = "email"
@@ -186,9 +180,6 @@ export default function Registration (props) {
               onChange = {(event) => onTextChange("email", event)}
               fullWidth
               margin="normal"
-              InputLabelProps={{
-                shrink: true
-              }}
               variant="outlined"
               label={formatNameWithError("email", "Email")}
               style={{ margin: 8 }} />
@@ -204,9 +195,6 @@ export default function Registration (props) {
               style={{ margin: 8 }}
               fullWidth
               margin="normal"
-              InputLabelProps={{
-                shrink: true
-              }}
               variant="outlined" />
           </div>
           <br />
