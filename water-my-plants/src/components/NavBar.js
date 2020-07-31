@@ -81,7 +81,7 @@ export default function NavBar() {
                 <Link to="/registration" style={{ textDecoration: "none" }}>
                   New user registration
                 </Link>
-              </MenuItem>}
+              </MenuItem> }
             <MenuItem onClick={handleClose}>
               <a
                 href="https://water-me.netlify.app/marketing.html"
@@ -104,7 +104,7 @@ export default function NavBar() {
           { location === "/" ?
             <div>
               <Button>
-                <AccountCircleIcon color="primary" />
+                <AccountCircleIcon color="secondary" />
                 <Link to="/logout"
                       style={{ textDecoration: "none", color:"white"  }}>
                   Logout
