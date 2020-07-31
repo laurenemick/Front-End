@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth} from '../utils/axiosWithAuth';
-import { Route } from 'react-router-dom';
 // import data from '../data';
 
 import PlantList from './PlantList';
@@ -9,6 +8,8 @@ import UpdateUser from './UpdateUser';
 
 import { UserContext } from '../contexts/UserContext';
 import { PlantContext } from '../contexts/PlantContext';
+
+import Container from "@material-ui/core/Container/Container"
 
 const Dashboard = () => {
     const [userInfo, setUserInfo] = useState([])
@@ -48,8 +49,9 @@ const Dashboard = () => {
     return (
         <UserContext.Provider value = {{ userInfo, setUserInfo, setIsUpdated }}>
             <PlantContext.Provider value = {{ isUpdated, getPlants, plantList, setPlantList, setIsUpdated }}>
-                    <UpdateUser />
+                   <div><UpdateUser />
                     <AddPlant/>
+                    </div> 
                     <PlantList />
             </PlantContext.Provider>
         </UserContext.Provider>
