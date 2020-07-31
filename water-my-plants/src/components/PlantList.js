@@ -92,7 +92,7 @@ const PlantList = () => {
   };
 
   return (
-    <div className="plant-container">
+    <div className="plant-container" styles = {{display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
       <h3>My Plants</h3>
       <div className="plant-list">
         {!plantList ? (
