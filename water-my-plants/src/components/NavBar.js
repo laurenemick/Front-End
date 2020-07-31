@@ -9,7 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -101,8 +101,8 @@ export default function NavBar() {
           <Typography variant="h6" className={classes.title}></Typography>
           { location === "/" ?
             <div>
-              <AccountCircleTwoToneIcon />
               <Button>
+                <AccountCircleIcon color="primary" />
                 <Link to="/logout"
                       style={{ textDecoration: "none", color:"white"  }}>
                   Logout
@@ -126,4 +126,4 @@ export default function NavBar() {
   );
 }
 
-//  LocalWords:  AccountCircleTwoTone
+//  LocalWords:  AccountCircle
