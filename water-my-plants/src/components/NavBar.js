@@ -75,11 +75,13 @@ export default function NavBar() {
                 Home
               </a>
             </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to="/registration" style={{ textDecoration: "none" }}>
-                Sign Up
-              </Link>
-            </MenuItem>
+            { location === "/registration" ?
+              <div/> :
+              <MenuItem onClick={handleClose}>
+                <Link to="/registration" style={{ textDecoration: "none" }}>
+                  New user registration
+                </Link>
+              </MenuItem>}
             <MenuItem onClick={handleClose}>
               <a
                 href="https://water-me.netlify.app/marketing.html"
