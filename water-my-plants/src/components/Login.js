@@ -9,7 +9,10 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 const loginValues = {
   username: '',
@@ -20,6 +23,17 @@ const loginError = {
   password: ''
 }
 const initialDisabled = true;
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#081c15",
+    },
+    secondary: {
+      main: '#2d6a4f',
+    },
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,18 +46,16 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: "25ch",
+    width: "35ch",
   },
   cardroot: {
-    minWidth: 275,
+    minWidth: 300,
+    padding: "0 5% 10% 5%",
   },
-
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
+  errors: {
+    color: "red",
+    paddingTop: "4%",
+  }
 }));
 
 export default function LogIn() {
@@ -114,50 +126,62 @@ export default function LogIn() {
 
   return (
     <div className={classes.root}>
-      <Card className={classes.cardroot} variant="outlined">
-        <h1>Log In</h1>
+      <ThemeProvider theme={theme}>
+        <Card className={classes.cardroot} variant="outlined">
           <CardContent>
+            <h1>Water Me</h1>
             <div>
               <TextField
                 id="username-field"
                 className={classes.textField}
-                label="username"
                 type="username"
                 name="username"
                 value={lFormValues.username}
                 onChange={onChange}
-                placeholder="RomanPlantski"
+                placeholder="Username"
                 margin="normal"
-
-
+                variant="outlined"
               />
             </div>
             <div>
               <TextField
                 id="password-field"
-                placeholder="********"
+                placeholder="Password"
                 className={classes.textField}
-                helperText="Password"
                 name="password"
                 type="password"
                 value={lFormValues.password}
                 onChange={onChange}
+                variant="outlined"
               />
             </div>
-            <div className="errors">
-              <div>{lFormErrors.username}</div>
-              <div>{lFormErrors.password}</div>
+            <div className={classes.errors}>
+              <Typography variant="body2">{lFormErrors.username}</Typography>
+              <Typography variant="body2">{lFormErrors.password}</Typography>
             </div>
+            <div style={{display: "flex", justifyContent: "center", marginTop: "2%"}}>
+              <CardActions>
+                <Button 
+                  id="submit-button"
+                  color="primary"
+                  variant="contained"
+                  onClick={onSubmit}
+                  disabled={disabled}
+                  className={classes.textField}
+                >
+                  Log In
+                </Button>
+              </CardActions>
+            </div>
+            <Typography variant="body2" align="center" color="primary" style={{fontWeight: "600", marginTop:"4%"}}>
+              Don't have an account?&nbsp;
+              <Link to="/registration" style={{color: "#2d6a4f"}}>
+                  Sign Up
+              </Link>
+            </Typography>
           </CardContent>
-          <CardActions>
-            <Button id="submit-button"
-                    variant="contained"
-                    onClick={onSubmit}
-                    disabled={disabled}>
-              Log In
-            </Button>
-          </CardActions>
-      </Card>
+        </Card>
+      </ThemeProvider>
     </div>
   );
 }

@@ -25,6 +25,7 @@ const initialPlant = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    marginTop: '10%',
     width: "345px",
     backgroundColor: "white",
     maxHeight: "800px",
@@ -92,9 +93,9 @@ const PlantList = () => {
   };
 
   return (
-    <div className="plant-container" styles = {{display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
+    <div className="plant-container">
       <h3>My Plants</h3>
-      <div className="plant-list">
+      <div className="plant-list" styles = {{display: "flex", flexFlow: 'column wrap'}}>
         {!plantList ? (
           <div />
         ) : (
@@ -133,52 +134,51 @@ const PlantList = () => {
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <CardContent>
                     <Typography paragraph>
-                      {/* <Button onClick={() => editPlant(plant)}>Edit</Button> */}
-                      <Button onClick={() => deletePlant(plant)}>Delete</Button>
-                      <div>
+                
                         {editing && (
-                            <form onSubmit={saveEdit}>
-                                <Card>
-                                    <CardContent>
-                                        <TextField
-                                        label = "nickname"
-                                        type="text"
-                                        name="nickname"
-                                        value={plantToEdit.nickname}
-                                        onChange={handleChange}
-                                        />         
-                                        <TextField
-                                        label ="Species"
-                                        type="text"
-                                        name="species"
-                                        value={plantToEdit.species}
-                                        onChange={handleChange}
-                                        />
-                                        <br />
-                                        <TextField
-                                        label ="h20 Frequency"
-                                        type="text"
-                                        name="h2ofrequency"
-                                        value={plantToEdit.h2ofrequency}
-                                        onChange={handleChange}
-                                        />
-                                        <TextField
-                                        label ="Image URL"
-                                        type="text"
-                                        name="image"
-                                        value={plantToEdit.imageurl}
-                                        onChange={handleChange}
-                                        />
-                                        <br />
-                                    </CardContent>
-                                    <CardActions>
-                                        <Button>Save</Button>
-                                        <Button onClick={() => setEditing(false)}>Cancel</Button>
-                                    </CardActions>
-                                </Card>
-                            </form> 
+                          <form onSubmit={saveEdit}>
+                              <Card>
+                              <CardHeader title='Edit Plant' />
+                                  <CardContent>
+                                      <TextField
+                                      label = "nickname"
+                                      type="text"
+                                      name="nickname"
+                                      value={plantToEdit.nickname}
+                                      onChange={handleChange}
+                                      />         
+                                      <TextField
+                                      label ="Species"
+                                      type="text"
+                                      name="species"
+                                      value={plantToEdit.species}
+                                      onChange={handleChange}
+                                      />
+                                      <br />
+                                      <TextField
+                                      label ="h20 Frequency"
+                                      type="text"
+                                      name="h2ofrequency"
+                                      value={plantToEdit.h2ofrequency}
+                                      onChange={handleChange}
+                                      />
+                                      <TextField
+                                      label ="Image URL"
+                                      type="text"
+                                      name="image"
+                                      value={plantToEdit.imageurl}
+                                      onChange={handleChange}
+                                      />
+                                      <br />
+                                  </CardContent>
+                                  <CardActions>
+                                      <Button>Save</Button>
+                                      <Button onClick={() => setEditing(false)}>Cancel</Button>
+                                      <Button onClick={() => deletePlant(plant)}>Delete</Button>
+                                  </CardActions>
+                              </Card>
+                          </form> 
                         )}
-                      </div>
                     </Typography>
                   </CardContent>
                 </Collapse>

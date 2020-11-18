@@ -11,6 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { Link } from "react-router-dom";
+import CardHeader from "@material-ui/core/CardHeader";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -99,6 +100,7 @@ export default function NavBar() {
               </a>
             </MenuItem>
           </Menu>
+          <h1>Water Me</h1>
 
           <Typography variant="h6" className={classes.title}></Typography>
           { location === "/" ?

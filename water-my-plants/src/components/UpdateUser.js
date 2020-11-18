@@ -80,7 +80,7 @@ const UpdateUser = () => {
 
   return (
     <div className="user-container">
-      <Card>
+      <Card style={{marginTop:'40%'}}>
         <CardHeader title="Profile" />
         <div className="user-info">
           <CardContent>

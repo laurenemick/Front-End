@@ -9,7 +9,7 @@ import UpdateUser from './UpdateUser';
 import { UserContext } from '../contexts/UserContext';
 import { PlantContext } from '../contexts/PlantContext';
 
-import Container from "@material-ui/core/Container/Container"
+import Container from "@material-ui/core/Container";
 
 const Dashboard = () => {
     const [userInfo, setUserInfo] = useState([])
@@ -49,10 +49,16 @@ const Dashboard = () => {
     return (
         <UserContext.Provider value = {{ userInfo, setUserInfo, setIsUpdated }}>
             <PlantContext.Provider value = {{ isUpdated, getPlants, plantList, setPlantList, setIsUpdated }}>
-                   <div><UpdateUser />
-                    <AddPlant/>
-                    </div> 
+                <div>
+                    <UpdateUser />
+                    <AddPlant />
+                </div>
+                <Container style={{
+                    display: "flex",
+                    width: '70%',
+                }}>
                     <PlantList />
+                </Container>
             </PlantContext.Provider>
         </UserContext.Provider>
     )

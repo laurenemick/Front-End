@@ -54,7 +54,7 @@ const AddPlant = () => {
     return (
         <div className='new-plant'>
             <form onSubmit={addPlant}>
-                <Card>
+                <Card style={{marginTop: '10%'}}>
                 <CardContent>
                 <CardHeader title = "Add a Plant"/>
                 
