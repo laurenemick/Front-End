@@ -8,29 +8,41 @@ import Button from '@material-ui/core/Button';
 import PasswordStrengthBar from 'react-password-strength-bar';
 import MuiPhoneInput from 'material-ui-phone-number';
 import * as yup from 'yup';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from 'axios';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 
-// courtesy of style master Ava
-const styleDefinition = makeStyles(theme => ({
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#081c15",
+    },
+    secondary: {
+      main: '#2d6a4f',
+    },
+  },
+});
+
+const styleDefinition = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: "25ch"
+    width: "35ch"
   },
   cardroot: {
-    minWidth: 275,
+    minWidth: 300,
+    padding: "0 5% 10% 5%",
   },
-
-  title: {
-    fontSize: 14,
+  errors: {
+    color: "red",
+    paddingTop: "4%",
   }
 }));
 
@@ -53,9 +65,9 @@ const validationSchema = yup.object().shape({
     .string()
     .max(320, "Why so long?")
     .required("Required"),
-  verifyPassword: yup
-    .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match")
+  // verifyPassword: yup
+  //   .string()
+  //   .oneOf([yup.ref("password"), null], "Passwords must match")
 });
 
 class NewUser {
@@ -154,82 +166,92 @@ export default function Registration (props) {
   }, [formValues]);
 
   return (
-    <div className={styles.root}>
-      <Card className={styles.cardroot} variant="outlined">
-
-        <h1>Registration</h1>
-        <CardContent>
-          <div>
-            <TextField
-              id="username-field"
-              label={formatNameWithError("username", "Username")}
-              name = "username"
-              type = "text"
-              value = {formValues.username}
-              onChange = {(event) => onTextChange("username", event)}
-              fullWidth
-              margin="normal"
-              variant="outlined"
-
-              style={{ margin: 8 }} />
-          <br />
-            <TextField
-              id="email-field"
-              name = "email"
-              type = "email"
-              value = {formValues.email}
-              onChange = {(event) => onTextChange("email", event)}
-              fullWidth
-              margin="normal"
-              variant="outlined"
-              label={formatNameWithError("email", "Email")}
-              style={{ margin: 8 }} />
+    <div className={styles.root} style={{marginTop:"8%"}}>
+      <ThemeProvider theme={theme}>
+        <Card className={styles.cardroot} variant="outlined">
+          <CardContent>
+            <h1>Registration</h1>
+            <div>
+              <TextField
+                id="username-field"
+                label={formatNameWithError("username", "Username")}
+                name = "username"
+                type = "text"
+                value = {formValues.username}
+                onChange = {(event) => onTextChange("username", event)}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                style={{ margin: 8 }} />
+         
             <br />
-            <MuiPhoneInput
-              defaultCountry="us"
-              regions={["north-america", "caribbean"]}
-              id="phone-number-field"
-              label={formatNameWithError("phone", "Phone Number")}
-              name = "phone"
-              value = {formValues.phone}
-              onChange = {onPhoneChange}
-              style={{ margin: 8 }}
-              fullWidth
-              margin="normal"
-              variant="outlined" />
-          </div>
-          <br />
-          <div>
             <TextField
-              id="password-field"
-              className={styles.textField}
-              label={formatNameWithError("password", "Password")}
-              name = "password"
-              type = "password"
-              value = {formValues.password}
-              onChange = {(event) => onTextChange("password", event)} />
-            <TextField
-              id="verify-password-field"
-              className={styles.textField}
-              label={formatNameWithError("verifyPassword", "Verify Password")}
-              name = "verifyPassword"
-              value = {formValues.vPassword}
-              type = "password"
-              onChange = {(event) => onTextChange("verifyPassword", event)} />
-            <PasswordStrengthBar password={formValues.password}
-                                 onChangeScore={onChangeScore}/>
-
-          </div>
-        </CardContent>
-        <CardActions>
-          <Button id="submit-form-button"
+                id="email-field"
+                name = "email"
+                type = "email"
+                value = {formValues.email}
+                onChange = {(event) => onTextChange("email", event)}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                label={formatNameWithError("email", "Email")}
+                style={{ margin: 8 }} />
+              <br />
+              <MuiPhoneInput
+                defaultCountry="us"
+                regions={["north-america", "caribbean"]}
+                id="phone-number-field"
+                label={formatNameWithError("phone", "Phone Number")}
+                name = "phone"
+                value = {formValues.phone}
+                onChange = {onPhoneChange}
+                style={{ margin: 8 }}
+                fullWidth
+                margin="normal"
+                variant="outlined" />
+            </div>
+            <div>
+              <TextField
+                id="password-field"
+                className={styles.textField}
+                label={formatNameWithError("password", "Password")}
+                name = "password"
+                type = "password"
+                variant="outlined" 
+                fullWidth
+                value = {formValues.password}
+                onChange = {(event) => onTextChange("password", event)} 
+                style={{paddingBottom: "8%"}}
+              />
+              {/* <TextField
+                id="verify-password-field"
+                className={styles.textField}
+                label={formatNameWithError("verifyPassword", "Verify Password")}
+                name = "verifyPassword"
+                value = {formValues.vPassword}
+                type = "password"
+                onChange = {(event) => onTextChange("verifyPassword", event)} 
+                style={{paddingBottom: "8%"}}
+              /> */}
+              <PasswordStrengthBar password={formValues.password} onChangeScore={onChangeScore}/>
+            </div>
+            <div style={{display: "flex", justifyContent: "center", margin: "4%"}}>
+              <CardActions>
+                <Button 
+                  id="submit-form-button"
                   variant="contained"
                   disabled = {validationErrors !== emptyErrors}
-                  onClick={submitForm}>
-            Register!
-          </Button>
-        </CardActions>
-      </Card>
+                  onClick={submitForm}
+                  className={styles.textField}
+                  color="primary"
+                >   
+                  Sign Up
+                </Button>
+              </CardActions>
+            </div>
+          </CardContent>
+        </Card>
+      </ThemeProvider>
     </div>
   );
 }

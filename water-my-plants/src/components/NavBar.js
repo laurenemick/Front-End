@@ -49,7 +49,7 @@ export default function NavBar() {
     <div className={classes.root}>
       <AppBar
         position="fixed"
-        style={{ background: "#16302B", boxShadow: "none", height:'7vh'}}
+        style={{ background: "#081c15", height:'10vh'}}
       >
         <Toolbar >
           <IconButton
@@ -71,7 +71,7 @@ export default function NavBar() {
             <MenuItem onClick={handleClose}>
               <a
                 href="https://water-me.netlify.app/index.html"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", color: "#081c15" }}
               >
                 Home
               </a>
@@ -79,14 +79,14 @@ export default function NavBar() {
             { location === "/registration" ?
               <div/> :
               <MenuItem onClick={handleClose}>
-                <Link to="/registration" style={{ textDecoration: "none" }}>
-                  New user registration
+                <Link to="/registration" style={{ textDecoration: "none", color: "#081c15" }}>
+                  Sign Up
                 </Link>
               </MenuItem> }
             <MenuItem onClick={handleClose}>
               <a
                 href="https://water-me.netlify.app/marketing.html"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", color: "#081c15" }}
               >
                 Marketing
               </a>
@@ -94,13 +94,12 @@ export default function NavBar() {
             <MenuItem onClick={handleClose}>
               <a
                 href="https://water-me.netlify.app/about.html"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", color: "#081c15" }}
               >
                 About
               </a>
             </MenuItem>
           </Menu>
-          <h1>Water Me</h1>
 
           <Typography variant="h6" className={classes.title}></Typography>
           { location === "/" ?
