@@ -77,6 +77,4 @@ const Plant = () => {
   );
 }
 			
-            
-	
 export default Plant;

@@ -23,7 +23,6 @@ export default function App() {
         display: "flex",
         justifyContent: "space-evenly",
         height: "95vh",
-        opacity: "90%",
         maxWidth: 'lg',
       }}>
         <Switch>
