@@ -36,9 +36,10 @@ const useStyles = makeStyles(theme => ({
 const Plant = () => {
 	const classes = useStyles();
 	const [expanded, setExpanded] = useState(false);
-	const handleExpandClick = () => {
+  
+  const handleExpandClick = () => {
 		setExpanded(!expanded);
-	  };
+	};
 
 	return (
 		<Card className={classes.root} variant = "outlined">
@@ -46,16 +47,19 @@ const Plant = () => {
         title={plant.nickname}//plants.nickname
         subheader={plant.species} //plants.species?
       />
-	  <CardMedia
-        className={classes.media}
-        image={plant.image} //plants.img
-      />
-		<CardContent>
+      
+      <CardMedia
+          className={classes.media}
+          image={plant.image} //plants.img
+        />
+
+      <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
         {plant.h2ofrequency}
         </Typography>
       </CardContent>
-	  <CardActions disableSpacing>
+
+	    <CardActions disableSpacing>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded
@@ -67,9 +71,10 @@ const Plant = () => {
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
+
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-		<Typography paragraph>Care Instructions:</Typography>
+          <Typography paragraph>Care Instructions:</Typography>
           <Typography paragraph>{plant.h2oFrequency}</Typography>
         </CardContent>
       </Collapse>
