@@ -38,24 +38,24 @@ const Plant = () => {
 	const [expanded, setExpanded] = useState(false);
   
   const handleExpandClick = () => {
-		setExpanded(!expanded);
+    setExpanded(!expanded)
 	};
 
 	return (
 		<Card className={classes.root} variant = "outlined">
       <CardHeader
-        title={plant.nickname}//plants.nickname
-        subheader={plant.species} //plants.species?
+        title={plant.nickname}
+        subheader={plant.species}
       />
-      
+
       <CardMedia
           className={classes.media}
-          image={plant.image} //plants.img
+          image={plant.image} 
         />
 
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        {plant.h2ofrequency}
+          {plant.h2ofrequency}
         </Typography>
       </CardContent>
 

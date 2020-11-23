@@ -98,47 +98,4 @@ const AddPlant = () => {
     )
 }
 
-// const Form = styled.form`
-//     margin: 5% 15%;
-//     padding: 5%;
-//     border: 1px solid rgba(var(--ca6,219,219,219),1);
-//     box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
-//     border-radius: 3px;
-//     text-align: center;
-//     font-family: 'Roboto', sans-serif;
-// `;
-
-// const Title = styled.div`
-//     font-weight: bold;
-//     font-size: 1.2rem;
-// `
-
-// const Label = styled.label`
-//     width: 100%;
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-// `
-
-// const TextField
-// label = "Nickname" = styled.TextField
-// label = "Nickname"
-//     padding: 1%;
-//     width: 70%;
-//     display: flex;
-//     justify-content: space-between;
-// `;
-
-// const Button = styled.button`
-//   color: white;
-//   background-color: green;
-//   padding: 1% 2%;
-//   border: 1px solid rgba(var(--ca6,219,219,219),1);
-//   border-radius: 3px;
-//   font-size: 1rem;
-//   &:hover {
-//     background-color: black;
-//   }
-;
-
 export default AddPlant;

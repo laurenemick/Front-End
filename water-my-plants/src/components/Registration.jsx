@@ -182,10 +182,10 @@ export default function Registration (props) {
                 fullWidth
                 margin="normal"
                 variant="outlined"
-                style={{ margin: 8 }} />
-         
-            <br />
-            <TextField
+                style={{ margin: 8 }} 
+              />
+              <br />
+              <TextField
                 id="email-field"
                 name = "email"
                 type = "email"
@@ -195,7 +195,8 @@ export default function Registration (props) {
                 margin="normal"
                 variant="outlined"
                 label={formatNameWithError("email", "Email")}
-                style={{ margin: 8 }} />
+                style={{ margin: 8 }} 
+              />
               <br />
               <MuiPhoneInput
                 defaultCountry="us"
@@ -208,20 +209,20 @@ export default function Registration (props) {
                 style={{ margin: 8 }}
                 fullWidth
                 margin="normal"
-                variant="outlined" />
-            </div>
-            <div>
+                variant="outlined" 
+              />
+              <br />
               <TextField
                 id="password-field"
-                className={styles.textField}
                 label={formatNameWithError("password", "Password")}
                 name = "password"
                 type = "password"
                 variant="outlined" 
                 fullWidth
+                margin="normal"
                 value = {formValues.password}
                 onChange = {(event) => onTextChange("password", event)} 
-                style={{paddingBottom: "8%"}}
+                style={{paddingBottom: "8%", margin: 8 }}
               />
               {/* <TextField
                 id="verify-password-field"

@@ -54,9 +54,13 @@ const PlantList = () => {
   const [expanded, setExpanded] = React.useState(false);
 
   const editPlant = (plant) => {
-    setEditing(true);
-    setPlantToEdit(plant);
-    setExpanded(!expanded);
+    plantList.map(p => { 
+      if (p.id == plant.id) {
+        setEditing(true);
+        setPlantToEdit(plant);
+        setExpanded(!expanded);
+      }
+    });
   };
 
   const saveEdit = (e) => {
@@ -130,53 +134,50 @@ const PlantList = () => {
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <CardContent>
                     <Typography paragraph>
-                      {/* <Button onClick={() => editPlant(plant)}>Edit</Button> */}
-                      {/* <div> */}
-                        {editing && ( //if editing is truthy, returns form
-                            <form>
-                                <Card>
-                                <CardHeader title='Edit Plant' />
-                                    <CardContent>
-                                        <TextField
-                                        label = "nickname"
-                                        type="text"
-                                        name="nickname"
-                                        value={plantToEdit.nickname}
-                                        onChange={handleChange}
-                                        />         
-                                        <TextField
-                                        label ="Species"
-                                        type="text"
-                                        name="species"
-                                        value={plantToEdit.species}
-                                        onChange={handleChange}
-                                        />
-                                        <br />
-                                        <TextField
-                                        label ="h20 Frequency"
-                                        type="text"
-                                        name="h2ofrequency"
-                                        value={plantToEdit.h2ofrequency}
-                                        onChange={handleChange}
-                                        />
-                                        <TextField
-                                        label ="Image URL"
-                                        type="text"
-                                        name="image"
-                                        value={plantToEdit.imageurl}
-                                        onChange={handleChange}
-                                        />
-                                        <br />
-                                    </CardContent>
-                                    <CardActions>
-                                        <Button onClick={saveEdit}>Save</Button>
-                                        <Button onClick={() => setEditing(false)}>Cancel</Button>
-                                        <Button onClick={() => deletePlant(plant)}>Delete</Button>
-                                    </CardActions>
-                                </Card>
-                            </form> 
-                        )}
-                      {/* </div> */}
+                      {editing && ( //if editing is truthy, returns form
+                        <form>
+                          <Card>
+                            <CardHeader title='Edit Plant' />
+                                <CardContent>
+                                    <TextField
+                                      label = "nickname"
+                                      type="text"
+                                      name="nickname"
+                                      value={plantToEdit.nickname}
+                                      onChange={handleChange}
+                                    />         
+                                    <TextField
+                                      label ="Species"
+                                      type="text"
+                                      name="species"
+                                      value={plantToEdit.species}
+                                      onChange={handleChange}
+                                    />
+                                    <br />
+                                    <TextField
+                                      label ="h20 Frequency"
+                                      type="text"
+                                      name="h2ofrequency"
+                                      value={plantToEdit.h2ofrequency}
+                                      onChange={handleChange}
+                                    />
+                                    <TextField
+                                      label ="Image URL"
+                                      type="text"
+                                      name="image"
+                                      value={plantToEdit.imageurl}
+                                      onChange={handleChange}
+                                    />
+                                    <br />
+                                </CardContent>
+                                <CardActions>
+                                    <Button onClick={saveEdit}>Save</Button>
+                                    <Button onClick={() => setEditing(false)}>Cancel</Button>
+                                    <Button onClick={() => deletePlant(plant)}>Delete</Button>
+                                </CardActions>
+                            </Card>
+                        </form> 
+                      )}
                     </Typography>
                   </CardContent>
                 </Collapse>
