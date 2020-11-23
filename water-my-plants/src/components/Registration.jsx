@@ -11,6 +11,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
 
 const theme = createMuiTheme({
   palette: {
@@ -101,6 +102,7 @@ export default function Registration (props) {
         [formValues, setFormValues] = useState(emptyForm),
         [validationErrors, setValidationErrors] = useState(emptyErrors),
         styles = styleDefinition();
+  const history = useHistory();
 
   // check for errors and save error messages every time form changes
   useEffect(() => {
@@ -157,7 +159,10 @@ export default function Registration (props) {
     const submittedUser = new NewUser(formValues);
     axios
       .post('https://nickussery-watermyplants.herokuapp.com/registeruser', submittedUser)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        history.push('/login')
+      })
       .catch(err => console.log(err));
   }
 
