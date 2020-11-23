@@ -27,7 +27,7 @@ const initialPlant = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: '10%',
+    margin: "2%",
     width: "345px",
     backgroundColor: "white",
     maxHeight: "800px",
@@ -89,14 +89,14 @@ const PlantList = () => {
 
   return (
     <div className="plant-container">
-      <h3>My Plants</h3>
-      <div className="plant-list" styles = {{display: "flex", flexFlow: 'column wrap'}}>
+      <h1 style={{color:"white", marginTop:"4%"}}>My Plants</h1>
+      <div className="plant-list" style={{display: "flex", flexFlow: "row wrap", justifyContent:"center"}}>
         {!plantList ? (
           <div />
         ) : (
           plantList.map((plant) => (
-            <div key={plant.plantid} className="plant">
-              <Card className={classes.root}>
+            <>
+              <Card className={classes.root} key={plant.plantid}>
                 <CardHeader
                   title={plant.nickname}
                   subheader={plant.species}
@@ -175,7 +175,7 @@ const PlantList = () => {
                 </Collapse>
               </Card>
               <br />
-            </div>
+              </>
           ))
         )}
       </div>

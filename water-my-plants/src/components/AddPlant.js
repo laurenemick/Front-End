@@ -51,15 +51,17 @@ const AddPlant = () => {
     }, [isUpdated]) 
 
     return (
-        <div className='new-plant'>
+        <div className='new-plant' style={{width:"60%"}}>
             <form>
-                <Card style={{marginTop: '10%'}}>
+                <Card style={{marginTop:"100px", padding:"4%"}}>
                     <CardHeader title = "Add a Plant"/>
                     <CardContent>
                         <TextField
                             label = "Nickname"
                             type='text'
                             name='nickname'
+                            fullWidth
+                            variant="outlined"
                             value={newPlant.nickname}
                             onChange={handleChange}
                         />
@@ -68,6 +70,8 @@ const AddPlant = () => {
                             label = "Species"
                             type='text'
                             name='species'
+                            fullWidth
+                            variant="outlined"
                             value={newPlant.species}
                             onChange={handleChange}
                         />
@@ -76,6 +80,8 @@ const AddPlant = () => {
                             label = "h20 Frequency"
                             type='text'
                             name='h2ofrequency'
+                            fullWidth
+                            variant="outlined"
                             value={newPlant.h2ofrequency}
                             onChange={handleChange}
                         />
@@ -84,6 +90,8 @@ const AddPlant = () => {
                             label = "ImageUrl"
                             type='text'
                             name='imageurl'
+                            fullWidth
+                            variant="outlined"
                             value={newPlant.imageurl}
                             onChange={handleChange}
                         />

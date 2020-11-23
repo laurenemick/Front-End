@@ -49,16 +49,11 @@ const Dashboard = () => {
     return (
         <UserContext.Provider value = {{ userInfo, setUserInfo, setIsUpdated }}>
             <PlantContext.Provider value = {{ isUpdated, getPlants, plantList, setPlantList, setIsUpdated }}>
-                <div>
+                <div style={{display:"flex", justifyContent:"space-evenly"}}>
                     <UpdateUser />
                     <AddPlant />
                 </div>
-                <Container style={{
-                    display: "flex",
-                    width: '70%',
-                }}>
-                    <PlantList />
-                </Container>
+                <PlantList />
             </PlantContext.Provider>
         </UserContext.Provider>
     )

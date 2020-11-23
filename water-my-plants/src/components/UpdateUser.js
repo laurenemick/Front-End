@@ -8,6 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button/Button";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,20 +80,18 @@ const UpdateUser = () => {
   };
 
   return (
-    <div className="user-container">
-      <Card style={{marginTop:'40%'}}>
+    <div className="user-container" style={{width:"30%"}}>
+      <Card style={{marginTop:"100px", padding:"4%"}}>
         <CardHeader title="Profile" />
-        <div className="user-info">
           <CardContent>
-            <h4>{userInfo.username}</h4>
-            <p>{userInfo.email}</p>
-            <p>{userInfo.phone}</p>
+            <Typography>{userInfo.username}</Typography>
+            <Typography>{userInfo.email}</Typography>
+            <Typography>{userInfo.phone}</Typography>
           </CardContent>
           <CardActions>
             <Button onClick={() => editUser(userInfo)}>Edit</Button>
             <Button onClick={() => deleteUser(userInfo)}>Delete</Button>
           </CardActions>
-        </div>
       </Card>
       {editing && (
         <form onSubmit={saveEdit}>

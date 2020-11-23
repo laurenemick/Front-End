@@ -11,7 +11,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { Link } from "react-router-dom";
-import CardHeader from "@material-ui/core/CardHeader";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +48,7 @@ export default function NavBar() {
     <div className={classes.root}>
       <AppBar
         position="fixed"
-        style={{ background: "#081c15", height:'10vh'}}
+        style={{ background: "#081c15", marginBottom: "6%"}}
       >
         <Toolbar >
           <IconButton

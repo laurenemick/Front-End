@@ -19,12 +19,12 @@ export default function App() {
     <div className="App">
       <NavBar />
       <CssBaseline />
-      <Container style={{
+      {/* <Container style={{
         display: "flex",
         justifyContent: "space-evenly",
         height: "95vh",
         maxWidth: 'lg',
-      }}>
+      }}> */}
         <Switch>
           <PrivateRoute exact path='/' component={Dashboard} />
           <Route exact path="/login">
@@ -34,7 +34,7 @@ export default function App() {
             <Registration />
           </Route>
         </Switch>
-      </Container>
+      {/* </Container> */}
       {/* <footer position="fixed"
               style={{ background: "#16302B",
                        boxShadow: "none",
