@@ -35,11 +35,7 @@ const styleDefinition = makeStyles((theme) => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: "35ch"
-  },
-  cardroot: {
-    minWidth: 300,
-    padding: "0 5% 10% 5%",
+    // width: "35ch"
   },
   errors: {
     color: "red",
@@ -66,9 +62,9 @@ const validationSchema = yup.object().shape({
     .string()
     .max(320, "Why so long?")
     .required("Required"),
-  // verifyPassword: yup
-  //   .string()
-  //   .oneOf([yup.ref("password"), null], "Passwords must match")
+  verifyPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match")
 });
 
 class NewUser {
@@ -171,9 +167,9 @@ export default function Registration (props) {
   }, [formValues]);
 
   return (
-    <div className={styles.root} style={{marginTop:"8%"}}>
+    <div className={styles.root} style={{marginTop:"6%"}}>
       <ThemeProvider theme={theme}>
-        <Card className={styles.cardroot} variant="outlined">
+        <Card style={{padding:"0 4% 0 4%", margin:"2%"}}>
           <CardContent>
             <h1>Registration</h1>
             <div>
@@ -227,18 +223,20 @@ export default function Registration (props) {
                 margin="normal"
                 value = {formValues.password}
                 onChange = {(event) => onTextChange("password", event)} 
-                style={{paddingBottom: "8%", margin: 8 }}
+                style={{margin: 8 }}
               />
-              {/* <TextField
+              <TextField
                 id="verify-password-field"
-                className={styles.textField}
                 label={formatNameWithError("verifyPassword", "Verify Password")}
                 name = "verifyPassword"
                 value = {formValues.vPassword}
                 type = "password"
+                variant="outlined" 
+                fullWidth
+                margin="normal"
                 onChange = {(event) => onTextChange("verifyPassword", event)} 
-                style={{paddingBottom: "8%"}}
-              /> */}
+                style={{paddingBottom: "8%", margin: 8}}
+              />
               <PasswordStrengthBar password={formValues.password} onChangeScore={onChangeScore}/>
             </div>
             <div style={{display: "flex", justifyContent: "center", margin: "4%"}}>
@@ -248,7 +246,7 @@ export default function Registration (props) {
                   variant="contained"
                   disabled = {validationErrors !== emptyErrors}
                   onClick={submitForm}
-                  className={styles.textField}
+                  // className={styles.textField}
                   color="primary"
                 >   
                   Sign Up

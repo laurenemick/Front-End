@@ -47,10 +47,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     width: "35ch",
   },
-  cardroot: {
-    minWidth: 300,
-    padding: "0 5% 10% 5%",
-  },
   errors: {
     color: "red",
     paddingTop: "4%",
@@ -124,9 +120,9 @@ export default function LogIn() {
   }, [lFormValues])
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{marginTop:"6%"}}>
       <ThemeProvider theme={theme}>
-        <Card className={classes.cardroot} variant="outlined">
+        <Card style={{padding:"0 4% 4% 4%", margin:"2%"}}>
           <CardContent>
             <h1>Water Me</h1>
             <div>
