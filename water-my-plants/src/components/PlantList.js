@@ -14,6 +14,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Button from "@material-ui/core/Button/Button"
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 const initialPlant = {
   plantid: 0,
@@ -33,17 +35,7 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: "rotate(180deg)",
-  },
+  }
 }));
 
 const PlantList = () => {
@@ -51,16 +43,17 @@ const PlantList = () => {
   const [editing, setEditing] = useState(false);
   const [plantToEdit, setPlantToEdit] = useState(initialPlant);
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const editPlant = (plant) => {
-    plantList.map(p => { 
-      if (p.id == plant.id) {
-        setEditing(true);
-        setPlantToEdit(plant);
-        setExpanded(!expanded);
-      }
-    });
+    if (!expanded) {
+      setEditing(true)
+      setPlantToEdit(plant)
+      setExpanded(true)
+    } else {
+      setEditing(false)
+      setExpanded(false)
+    }
   };
 
   const saveEdit = (e) => {
@@ -71,6 +64,8 @@ const PlantList = () => {
       .then((res) => {
         setPlantToEdit(plantToEdit);
         setIsUpdated(true);
+        setExpanded(false);
+        setEditing(false);
       })
       .catch((err) => console.log(err));
   };
@@ -121,16 +116,13 @@ const PlantList = () => {
                 </CardContent>
                 <CardActions disableSpacing>
                   <IconButton
-                    className={clsx(classes.expand, {
-                      [classes.expandOpen]: expanded,
-                    })}
+                    style={{marginLeft: "auto"}}
                     onClick={() => editPlant(plant)}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                  >
-                    <ExpandMoreIcon />
+                    >
+                    {expanded ? <ExpandLess /> : <ExpandMore />}
                   </IconButton>
                 </CardActions>
+
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <CardContent>
                     <Typography paragraph>
@@ -138,44 +130,44 @@ const PlantList = () => {
                         <form>
                           <Card>
                             <CardHeader title='Edit Plant' />
-                                <CardContent>
-                                    <TextField
-                                      label = "nickname"
-                                      type="text"
-                                      name="nickname"
-                                      value={plantToEdit.nickname}
-                                      onChange={handleChange}
-                                    />         
-                                    <TextField
-                                      label ="Species"
-                                      type="text"
-                                      name="species"
-                                      value={plantToEdit.species}
-                                      onChange={handleChange}
-                                    />
-                                    <br />
-                                    <TextField
-                                      label ="h20 Frequency"
-                                      type="text"
-                                      name="h2ofrequency"
-                                      value={plantToEdit.h2ofrequency}
-                                      onChange={handleChange}
-                                    />
-                                    <TextField
-                                      label ="Image URL"
-                                      type="text"
-                                      name="image"
-                                      value={plantToEdit.imageurl}
-                                      onChange={handleChange}
-                                    />
-                                    <br />
-                                </CardContent>
-                                <CardActions>
-                                    <Button onClick={saveEdit}>Save</Button>
-                                    <Button onClick={() => setEditing(false)}>Cancel</Button>
-                                    <Button onClick={() => deletePlant(plant)}>Delete</Button>
-                                </CardActions>
-                            </Card>
+                            <CardContent>
+                              <TextField
+                                label = "nickname"
+                                type="text"
+                                name="nickname"
+                                value={plantToEdit.nickname}
+                                onChange={handleChange}
+                              />         
+                              <TextField
+                                label ="Species"
+                                type="text"
+                                name="species"
+                                value={plantToEdit.species}
+                                onChange={handleChange}
+                              />
+                              <br />
+                              <TextField
+                                label ="h20 Frequency"
+                                type="text"
+                                name="h2ofrequency"
+                                value={plantToEdit.h2ofrequency}
+                                onChange={handleChange}
+                              />
+                              <TextField
+                                label ="Image URL"
+                                type="text"
+                                name="image"
+                                value={plantToEdit.imageurl}
+                                onChange={handleChange}
+                              />
+                              <br />
+                            </CardContent>
+                            <CardActions>
+                                <Button onClick={saveEdit}>Save</Button>
+                                <Button onClick={() => {setEditing(false); setExpanded(false)}}>Cancel</Button>
+                                <Button onClick={() => deletePlant(plant)}>Delete</Button>
+                            </CardActions>
+                          </Card>
                         </form> 
                       )}
                     </Typography>
