@@ -49,7 +49,7 @@ const PlantList = () => {
     if (!expanded) {
       setEditing(true)
       setPlantToEdit(plant)
-      setExpanded(true)
+      setExpanded(!expanded)
     } else {
       setEditing(false)
       setExpanded(false)
@@ -118,7 +118,7 @@ const PlantList = () => {
                   <IconButton
                     style={{marginLeft: "auto"}}
                     onClick={() => editPlant(plant)}
-                    >
+                  >
                     {expanded ? <ExpandLess /> : <ExpandMore />}
                   </IconButton>
                 </CardActions>
@@ -156,7 +156,7 @@ const PlantList = () => {
                               <TextField
                                 label ="Image URL"
                                 type="text"
-                                name="image"
+                                name="imageurl"
                                 value={plantToEdit.imageurl}
                                 onChange={handleChange}
                               />
