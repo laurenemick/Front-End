@@ -8,6 +8,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Button from '@material-ui/core/Button/Button'
+
 const initialPlant = {
     nickname: '',
     species: '',
@@ -64,8 +65,8 @@ const AddPlant = () => {
                             variant="outlined"
                             value={newPlant.nickname}
                             onChange={handleChange}
+                            style={{paddingBottom:"2%"}}
                         />
-                        <br />
                         <TextField
                             label = "Species"
                             type='text'
@@ -74,8 +75,8 @@ const AddPlant = () => {
                             variant="outlined"
                             value={newPlant.species}
                             onChange={handleChange}
+                            style={{paddingBottom:"2%"}}
                         />
-                        <br />
                         <TextField
                             label = "h20 Frequency"
                             type='text'
@@ -84,8 +85,8 @@ const AddPlant = () => {
                             variant="outlined"
                             value={newPlant.h2ofrequency}
                             onChange={handleChange}
+                            style={{paddingBottom:"2%"}}
                         />
-                        <br />
                         <TextField
                             label = "ImageUrl"
                             type='text'
