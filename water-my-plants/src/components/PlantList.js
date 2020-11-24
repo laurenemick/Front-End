@@ -44,16 +44,24 @@ const PlantList = () => {
   const [plantToEdit, setPlantToEdit] = useState(initialPlant);
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState("")
 
-  const editPlant = (plant) => {
-    if (!expanded) {
+  const editPlant = (plant, index) => {
+    if (selectedIndex === index) {
+      setSelectedIndex("")
+    } else {
+      setSelectedIndex(index)
       setEditing(true)
       setPlantToEdit(plant)
-      setExpanded(!expanded)
-    } else {
-      setEditing(false)
-      setExpanded(false)
     }
+    // if (!expanded) {
+    //   setEditing(true)
+    //   setPlantToEdit(plant)
+    //   setExpanded(!expanded)
+    // } else {
+    //   setEditing(false)
+    //   setExpanded(false)
+    // }
   };
 
   const saveEdit = (e) => {
@@ -94,7 +102,7 @@ const PlantList = () => {
         {!plantList ? (
           <div />
         ) : (
-          plantList.map((plant) => (
+          plantList.map((plant, index) => (
             <>
               <Card className={classes.root} key={plant.plantid}>
                 <CardHeader
@@ -117,13 +125,13 @@ const PlantList = () => {
                 <CardActions disableSpacing>
                   <IconButton
                     style={{marginLeft: "auto"}}
-                    onClick={() => editPlant(plant)}
+                    onClick={() => editPlant(plant, index)}
                   >
-                    {expanded ? <ExpandLess /> : <ExpandMore />}
+                    {index === selectedIndex ? <ExpandLess /> : <ExpandMore />}
                   </IconButton>
                 </CardActions>
 
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <Collapse in={index === selectedIndex} timeout="auto" unmountOnExit>
                   <CardContent>
                     <Typography paragraph>
                       {editing && ( //if editing is truthy, returns form
@@ -164,7 +172,7 @@ const PlantList = () => {
                             </CardContent>
                             <CardActions>
                                 <Button onClick={saveEdit}>Save</Button>
-                                <Button onClick={() => {setEditing(false); setExpanded(false)}}>Cancel</Button>
+                                <Button onClick={() => {setEditing(false); setSelectedIndex("")}}>Cancel</Button>
                                 <Button onClick={() => deletePlant(plant)}>Delete</Button>
                             </CardActions>
                           </Card>
