@@ -51,17 +51,9 @@ const PlantList = () => {
       setSelectedIndex("")
     } else {
       setSelectedIndex(index)
-      setEditing(true)
       setPlantToEdit(plant)
-    }
-    // if (!expanded) {
-    //   setEditing(true)
-    //   setPlantToEdit(plant)
-    //   setExpanded(!expanded)
-    // } else {
-    //   setEditing(false)
-    //   setExpanded(false)
-    // }
+      setEditing(true)
+    } 
   };
 
   const saveEdit = (e) => {
@@ -98,7 +90,7 @@ const PlantList = () => {
   return (
     <div className="plant-container">
       <h1 style={{color:"white", marginTop:"4%"}}>My Plants</h1>
-      <div className="plant-list" style={{display: "flex", flexFlow: "row wrap", justifyContent:"center"}}>
+      <div className="plant-list" style={{height: "1000px", display: "flex", flexFlow: "column wrap", justifyContent:"flex-start", alignContent:"center"}}>
         {!plantList ? (
           <div />
         ) : (
@@ -131,59 +123,58 @@ const PlantList = () => {
                   </IconButton>
                 </CardActions>
 
-                <Collapse in={index === selectedIndex} timeout="auto" unmountOnExit>
-                  <CardContent>
-                    <Typography paragraph>
-                      {editing && ( //if editing is truthy, returns form
-                        <form>
-                          <Card>
-                            <CardHeader title='Edit Plant' />
-                            <CardContent>
-                              <TextField
-                                label = "nickname"
-                                type="text"
-                                name="nickname"
-                                value={plantToEdit.nickname}
-                                onChange={handleChange}
-                              />         
-                              <TextField
-                                label ="Species"
-                                type="text"
-                                name="species"
-                                value={plantToEdit.species}
-                                onChange={handleChange}
-                              />
-                              <br />
-                              <TextField
-                                label ="h20 Frequency"
-                                type="text"
-                                name="h2ofrequency"
-                                value={plantToEdit.h2ofrequency}
-                                onChange={handleChange}
-                              />
-                              <TextField
-                                label ="Image URL"
-                                type="text"
-                                name="imageurl"
-                                value={plantToEdit.imageurl}
-                                onChange={handleChange}
-                              />
-                              <br />
-                            </CardContent>
-                            <CardActions>
-                                <Button onClick={saveEdit}>Save</Button>
-                                <Button onClick={() => {setEditing(false); setSelectedIndex("")}}>Cancel</Button>
-                                <Button onClick={() => deletePlant(plant)}>Delete</Button>
-                            </CardActions>
-                          </Card>
-                        </form> 
-                      )}
-                    </Typography>
-                  </CardContent>
-                </Collapse>
+                {editing && ( //if editing is truthy, returns form
+                  <Collapse in={index === selectedIndex} timeout="auto" unmountOnExit>
+                    <CardContent>
+                      <Typography paragraph>
+                          <form>
+                            <Card>
+                              <CardHeader title='Edit Plant' />
+                              <CardContent>
+                                <TextField
+                                  label = "nickname"
+                                  type="text"
+                                  name="nickname"
+                                  value={plantToEdit.nickname}
+                                  onChange={handleChange}
+                                  />         
+                                <TextField
+                                  label ="Species"
+                                  type="text"
+                                  name="species"
+                                  value={plantToEdit.species}
+                                  onChange={handleChange}
+                                  />
+                                <br />
+                                <TextField
+                                  label ="h20 Frequency"
+                                  type="text"
+                                  name="h2ofrequency"
+                                  value={plantToEdit.h2ofrequency}
+                                  onChange={handleChange}
+                                  />
+                                <TextField
+                                  label ="Image URL"
+                                  type="text"
+                                  name="imageurl"
+                                  value={plantToEdit.imageurl}
+                                  onChange={handleChange}
+                                  />
+                                <br />
+                              </CardContent>
+                              <CardActions>
+                                  <Button onClick={saveEdit}>Save</Button>
+                                  <Button onClick={() => {setEditing(false); setSelectedIndex("")}}>Cancel</Button>
+                                  <Button onClick={() => deletePlant(plant)}>Delete</Button>
+                              </CardActions>
+                            </Card>
+                          </form> 
+                      </Typography>
+                    </CardContent>
+                  </Collapse>
+                )}
               </Card>
-              <br />
-              </>
+            </>
           ))
         )}
       </div>
