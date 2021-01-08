@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    width: "50%",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -48,9 +49,9 @@ export default function NavBar() {
     <div className={classes.root}>
       <AppBar
         position="fixed"
-        style={{ background: "#081c15", marginBottom: "6%"}}
+        id="nav"
       >
-        <Toolbar >
+        <Toolbar>
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -67,7 +68,7 @@ export default function NavBar() {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={handleClose} style={{ margin: "30px 50px 10px"}}>
               <a
                 href="https://water-me.netlify.app/index.html"
                 style={{ textDecoration: "none", color: "#081c15" }}
@@ -75,22 +76,7 @@ export default function NavBar() {
                 Home
               </a>
             </MenuItem>
-            { location === "/registration" ?
-              <div/> :
-              <MenuItem onClick={handleClose}>
-                <Link to="/registration" style={{ textDecoration: "none", color: "#081c15" }}>
-                  Sign Up
-                </Link>
-              </MenuItem> }
-            <MenuItem onClick={handleClose}>
-              <a
-                href="https://water-me.netlify.app/marketing.html"
-                style={{ textDecoration: "none", color: "#081c15" }}
-              >
-                Marketing
-              </a>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={handleClose} style={{ margin: "10px 50px 30px"}}>
               <a
                 href="https://water-me.netlify.app/about.html"
                 style={{ textDecoration: "none", color: "#081c15" }}

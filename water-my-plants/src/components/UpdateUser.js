@@ -1,40 +1,18 @@
 import React, { useState, useContext } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { UserContext } from "../contexts/UserContext";
+// import UploadAvatar from "./UploadAvatar";
+
 import TextField from "@material-ui/core/TextField/TextField";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "345px",
-    backgroundColor: "white",
-    maxHeight: "600px",
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%", // 16:9
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: "rotate(180deg)",
-  },
-}));
-
 const UpdateUser = () => {
   const { userInfo, setUserInfo, setIsUpdated } = useContext(UserContext);
-  console.log(userInfo);
   const [editing, setEditing] = useState(false);
   const [user, setUser] = useState({
     id: userInfo.id,
@@ -42,6 +20,7 @@ const UpdateUser = () => {
     email: userInfo.email,
     password: userInfo.password,
     phone: userInfo.phone,
+    imageurl: userInfo.imageurl,
   });
 
   const editUser = (user) => {
@@ -53,17 +32,18 @@ const UpdateUser = () => {
     e.preventDefault();
 
     axiosWithAuth()
-      .put(`users/user/${user.id}`, user)
+      .put(`/users/user/${user.id}`, user)
       .then((res) => {
         setUserInfo(user);
         setIsUpdated(true);
+        setEditing(false)
       })
       .catch((err) => console.log(err.message));
   };
 
   const deleteUser = (user) => {
     axiosWithAuth()
-      .delete(`users/user/${userInfo.id}`)
+      .delete(`/users/user/${userInfo.id}`)
       .then((res) => {
         const newArr = userInfo.filter((f) => f.id !== user.id);
         setUserInfo(newArr);
@@ -80,9 +60,10 @@ const UpdateUser = () => {
   };
 
   return (
-    <div className="user-container" style={{width:"30%"}}>
-      <Card style={{marginTop:"100px", padding:"4%"}}>
+    <div className="user-container">
+      <Card className="profile">
         <CardHeader title="Profile" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt={userInfo.username} height="150px" width="150px" className="profile-img" />
           <CardContent>
             <Typography>{userInfo.username}</Typography>
             <Typography>{userInfo.email}</Typography>
@@ -98,41 +79,45 @@ const UpdateUser = () => {
           <Card>
             <CardContent>
               <h3>Edit Profile</h3>
-              {/* <label>Username:
-                            <TextField
-                            label = "Password"
-                                type='text'
-                                name='username'
-                                value={user.username}
-                                onChange={handleChange}
-                            />
-                        </label> */}
-              <br />
-
+              {/* <UploadAvatar handleChange1={handleChange} img={user.imageurl} /> */}
+              <TextField
+                label="Image url"
+                type="text"
+                name="imageurl"
+                value={user.imageurl}
+                onChange={handleChange}
+                fullWidth
+                variant="outlined"
+                style={{paddingBottom:"2%"}}
+              />
               <TextField
                 label="Password"
                 type="password"
                 name="password"
                 value={user.password}
                 onChange={handleChange}
+                fullWidth
+                variant="outlined"
+                style={{paddingBottom:"2%"}}
               />
-
-              <br />
-
               <TextField
                 label="email"
                 type="text"
                 name="email"
                 value={user.email}
                 onChange={handleChange}
+                fullWidth
+                variant="outlined"
+                style={{paddingBottom:"2%"}}
               />
-
               <TextField
                 label="phone"
                 type="text"
                 name="phone"
                 value={user.phone}
                 onChange={handleChange}
+                fullWidth
+                variant="outlined"
               />
             </CardContent>
             <CardActions>

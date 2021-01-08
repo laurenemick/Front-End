@@ -41,6 +41,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
+    marginTop: "0",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "20%",
+    }
+  },
+  card: {
+    padding:"0 4% 4% 4%", 
+    margin:"2%",
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -100,7 +108,6 @@ export default function LogIn() {
           }
         })
         .then(res => {
-          console.log(res)
           localStorage.setItem('token', res.data.access_token)
           history.push('/')
         })
@@ -116,13 +123,13 @@ export default function LogIn() {
   }, [lFormValues])
 
   useEffect(() => {
-    console.log(lFormValues)
+    
   }, [lFormValues])
 
   return (
-    <div className={classes.root} style={{marginTop:"6%"}}>
+    <div className={classes.root}>
       <ThemeProvider theme={theme}>
-        <Card style={{padding:"0 4% 4% 4%", margin:"2%"}}>
+        <Card className={classes.card}>
           <CardContent>
             <h1>Water Me</h1>
             <div>

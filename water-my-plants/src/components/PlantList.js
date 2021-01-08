@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { PlantContext } from "../contexts/PlantContext";
+
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 import TextField from "@material-ui/core/TextField/TextField"
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -12,10 +12,9 @@ import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Button from "@material-ui/core/Button/Button"
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
 
 const initialPlant = {
   plantid: 0,
@@ -27,10 +26,21 @@ const initialPlant = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: "2%",
-    width: "345px",
+    marginBottom: "8%",
+    width: "600px",
     backgroundColor: "white",
     maxHeight: "800px",
+    [theme.breakpoints.down("sm")]: {
+      width: "300px",
+    }
+  },
+  headercard: {
+    margin: "4% 0",
+    background: "#081c15",
+    color: "white",
+    [theme.breakpoints.down("sm")]: {
+      margin: "15% 0 10%",
+    }
   },
   media: {
     height: 0,
@@ -88,95 +98,99 @@ const PlantList = () => {
   };
 
   return (
-    <div className="plant-container">
-      <h1 style={{color:"white", marginTop:"4%"}}>My Plants</h1>
-      <div className="plant-list" style={{height: "1000px", display: "flex", flexFlow: "column wrap", justifyContent:"flex-start", alignContent:"center"}}>
-        {!plantList ? (
-          <div />
-        ) : (
-          plantList.map((plant, index) => (
-            <>
-              <Card className={classes.root} key={plant.plantid}>
-                <CardHeader
-                  title={plant.nickname}
-                  subheader={plant.species}
-                />
-                <CardMedia
-                  className={classes.media}
-                  image={plant.imageurl} 
-                />
-                <CardContent>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {plant.h2ofrequency}
-                  </Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                  <IconButton
-                    style={{marginLeft: "auto"}}
-                    onClick={() => editPlant(plant, index)}
-                  >
-                    {index === selectedIndex ? <ExpandLess /> : <ExpandMore />}
-                  </IconButton>
-                </CardActions>
+    <div className="plants">
+      <Card className={classes.headercard}>
+        <h1 >My Plants</h1>
+      </Card>
+      <div className="plant-container">
+        <div className="plant-list">
+          {!plantList ? (
+            <div />
+          ) : (
+            plantList.map((plant, index) => (
+              <div>
+                <Card className={classes.root} key={plant.plantid}>
+                  <CardHeader
+                    title={plant.nickname}
+                    subheader={plant.species}
+                  />
+                  <CardMedia
+                    className={classes.media}
+                    image={plant.imageurl} 
+                  />
+                  <CardContent>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {plant.h2ofrequency}
+                    </Typography>
+                  </CardContent>
+                  <CardActions disableSpacing style={{background: "#081c15"}}>
+                    <IconButton
+                      style={{marginLeft: "auto", color:"white"}}
+                      onClick={() => editPlant(plant, index)}
+                    >
+                      {index === selectedIndex ? <ExpandLess /> : <ExpandMore />}
+                    </IconButton>
+                  </CardActions>
 
-                {editing && ( //if editing is truthy, returns form
-                  <Collapse in={index === selectedIndex} timeout="auto" unmountOnExit>
-                    <CardContent>
-                      <Typography paragraph>
-                          <form>
-                            <Card>
-                              <CardHeader title='Edit Plant' />
-                              <CardContent>
-                                <TextField
-                                  label = "nickname"
-                                  type="text"
-                                  name="nickname"
-                                  value={plantToEdit.nickname}
-                                  onChange={handleChange}
-                                  />         
-                                <TextField
-                                  label ="Species"
-                                  type="text"
-                                  name="species"
-                                  value={plantToEdit.species}
-                                  onChange={handleChange}
-                                  />
-                                <br />
-                                <TextField
-                                  label ="h20 Frequency"
-                                  type="text"
-                                  name="h2ofrequency"
-                                  value={plantToEdit.h2ofrequency}
-                                  onChange={handleChange}
-                                  />
-                                <TextField
-                                  label ="Image URL"
-                                  type="text"
-                                  name="imageurl"
-                                  value={plantToEdit.imageurl}
-                                  onChange={handleChange}
-                                  />
-                                <br />
-                              </CardContent>
-                              <CardActions>
-                                  <Button onClick={saveEdit}>Save</Button>
-                                  <Button onClick={() => {setEditing(false); setSelectedIndex("")}}>Cancel</Button>
-                                  <Button onClick={() => deletePlant(plant)}>Delete</Button>
-                              </CardActions>
-                            </Card>
-                          </form> 
-                      </Typography>
-                    </CardContent>
-                  </Collapse>
-                )}
-              </Card>
-            </>
-          ))
-        )}
+                  {editing && ( //if editing is truthy, returns form
+                    <Collapse in={index === selectedIndex} timeout="auto" unmountOnExit>
+                      <CardContent>
+                        <Typography paragraph>
+                            <form>
+                              <Card>
+                                <CardHeader title='Edit Plant' />
+                                <CardContent>
+                                  <TextField
+                                    label = "nickname"
+                                    type="text"
+                                    name="nickname"
+                                    value={plantToEdit.nickname}
+                                    onChange={handleChange}
+                                    />         
+                                  <TextField
+                                    label ="Species"
+                                    type="text"
+                                    name="species"
+                                    value={plantToEdit.species}
+                                    onChange={handleChange}
+                                    />
+                                  <br />
+                                  <TextField
+                                    label ="h20 Frequency"
+                                    type="text"
+                                    name="h2ofrequency"
+                                    value={plantToEdit.h2ofrequency}
+                                    onChange={handleChange}
+                                    />
+                                  <TextField
+                                    label ="Image URL"
+                                    type="text"
+                                    name="imageurl"
+                                    value={plantToEdit.imageurl}
+                                    onChange={handleChange}
+                                    />
+                                  <br />
+                                </CardContent>
+                                <CardActions>
+                                    <Button onClick={saveEdit}>Save</Button>
+                                    <Button onClick={() => {setEditing(false); setSelectedIndex("")}}>Cancel</Button>
+                                    <Button onClick={() => deletePlant(plant)}>Delete</Button>
+                                </CardActions>
+                              </Card>
+                            </form> 
+                        </Typography>
+                      </CardContent>
+                    </Collapse>
+                  )}
+                </Card>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

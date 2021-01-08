@@ -31,6 +31,14 @@ const styleDefinition = makeStyles((theme) => ({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
+    marginTop: "6%",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "20%",
+    }
+  },
+  card: {
+    padding:"0 4% 4% 4%", 
+    margin:"2%",
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -52,6 +60,9 @@ const validationSchema = yup.object().shape({
     .string()
     .email("Invalid email address")
     .required("Required"),
+  // imageurl: yup
+  //   .string()
+  //   .required("Required"),
   phone: yup
     .string()
     .matches(
@@ -95,9 +106,9 @@ Object.freeze(emptyErrors);
 // Sign up page
 export default function Registration (props) {
   const setAuthToken = {props},
-        [formValues, setFormValues] = useState(emptyForm),
-        [validationErrors, setValidationErrors] = useState(emptyErrors),
-        styles = styleDefinition();
+  [formValues, setFormValues] = useState(emptyForm),
+  [validationErrors, setValidationErrors] = useState(emptyErrors),
+  styles = styleDefinition();
   const history = useHistory();
 
   // check for errors and save error messages every time form changes
@@ -156,23 +167,23 @@ export default function Registration (props) {
     axios
       .post('https://nickussery-watermyplants.herokuapp.com/registeruser', submittedUser)
       .then(res => {
-        console.log(res)
         history.push('/login')
       })
       .catch(err => console.log(err));
   }
 
   useEffect(() => {
-    console.log(formValues);
+
   }, [formValues]);
 
   return (
-    <div className={styles.root} style={{marginTop:"6%"}}>
+    <div className={styles.root}>
       <ThemeProvider theme={theme}>
-        <Card style={{padding:"0 4% 0 4%", margin:"2%"}}>
+        <Card className={styles.card}>
           <CardContent>
             <h1>Registration</h1>
             <div>
+              <img src="" alt="" />
               <TextField
                 id="username-field"
                 label={formatNameWithError("username", "Username")}
@@ -213,6 +224,18 @@ export default function Registration (props) {
                 variant="outlined" 
               />
               <br />
+               {/* <TextField
+                id="imageurl-field"
+                label={formatNameWithError("imageurl", "Imageurl")}
+                name = "imageurl"
+                type = "text"
+                variant="outlined" 
+                fullWidth
+                margin="normal"
+                value = {formValues.imageurl}
+                onChange = {(event) => onTextChange("imageurl", event)} 
+                style={{margin: 8 }}
+              /> */}
               <TextField
                 id="password-field"
                 label={formatNameWithError("password", "Password")}

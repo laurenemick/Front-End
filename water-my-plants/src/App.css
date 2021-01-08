@@ -5,15 +5,88 @@
 }
 
 .App-header {
-  /* min-height: 100vh; */
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
 h1 {
   font-family: 'Varela Round', sans-serif;
+}
+
+#nav {
+  background: #081c15; 
+}
+
+.dashboard {
+  display: flex; 
+  justify-content: space-evenly;
+  margin: 10% 2%;
+}
+
+/* UpdateUser */
+.user-container {
+  display: flex;
+  justify-content: center;
+}
+.profile {
+  padding: 20px 30px;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.profile-img {
+  border-radius: 100%;
+}
+
+/* AddPlant */
+.new-plant {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+}
+.plant-card {
+  padding: 20px 30px;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+/* PlantList */
+.plants {
+  background-color: rgb(255, 255, 255, .3);
+}
+.plant-container {
+  display: flex;
+  justify-content: center;
+}
+.plant-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+  #nav {
+    margin-bottom: 0;
+  }
+  .dashboard {
+    flex-direction: column;
+    margin: 20% 2% 0;
+  }
+  .profile {
+    width: 300px;
+    margin: 6% 0 15%;
+  }
+  .new-plant {
+    width: 100%;
+  }
+  .plant-card {
+    width: 300px;
+    padding: 0;
+  }
 }
