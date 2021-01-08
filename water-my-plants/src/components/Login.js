@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    marginTop: "0",
+    marginTop: "6%",
     [theme.breakpoints.down("sm")]: {
       marginTop: "20%",
     }
@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: "35ch",
   },
   errors: {
     color: "red",
