@@ -31,14 +31,14 @@ const styleDefinition = makeStyles((theme) => ({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    marginTop: "6%",
+    marginTop: "8%",
     [theme.breakpoints.down("sm")]: {
-      marginTop: "20%",
+      marginTop: "15%",
     }
   },
   card: {
     padding:"0 4% 4% 4%", 
-    margin:"2%",
+    margin:"6% 2% 0",
   },
   textField: {
     marginLeft: theme.spacing(1),

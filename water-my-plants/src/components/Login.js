@@ -19,7 +19,8 @@ const loginValues = {
 }
 const loginError = {
   username: '',
-  password: ''
+  password: '',
+  loginfail: '',
 }
 const initialDisabled = true;
 
@@ -41,14 +42,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    marginTop: "6%",
+    marginTop: "8%",
     [theme.breakpoints.down("sm")]: {
-      marginTop: "20%",
+      marginTop: "15%",
     }
   },
   card: {
     padding:"0 4% 4% 4%", 
-    margin:"6%",
+    margin:"6% 2% 0",
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -110,7 +111,9 @@ export default function LogIn() {
           localStorage.setItem('token', res.data.access_token)
           history.push('/')
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          setLFormErrors({loginfail: "Invalid username and/or password."});
+      })
   };
 
   useEffect(() => {
@@ -157,6 +160,7 @@ export default function LogIn() {
             <div className={classes.errors}>
               <Typography variant="body2">{lFormErrors.username}</Typography>
               <Typography variant="body2">{lFormErrors.password}</Typography>
+              <Typography variant="body2">{lFormErrors.loginfail}</Typography>
             </div>
             <div style={{display: "flex", justifyContent: "center", marginTop: "2%"}}>
               <CardActions>
