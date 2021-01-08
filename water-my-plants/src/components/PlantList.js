@@ -74,7 +74,7 @@ const PlantList = () => {
       .then((res) => {
         setPlantToEdit(plantToEdit);
         setIsUpdated(true);
-        setExpanded(false);
+        setExpanded(!expanded);
         setEditing(false);
       })
       .catch((err) => console.log(err));

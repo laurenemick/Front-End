@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     padding:"0 4% 4% 4%", 
-    margin:"2%",
+    margin:"6%",
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -110,9 +110,7 @@ export default function LogIn() {
           localStorage.setItem('token', res.data.access_token)
           history.push('/')
         })
-        .catch(e => {
-          throw `Everything is broken forever: ${e}`
-        })
+        .catch(err => console.log(err));
   };
 
   useEffect(() => {

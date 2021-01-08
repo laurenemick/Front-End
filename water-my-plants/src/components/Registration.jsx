@@ -43,7 +43,6 @@ const styleDefinition = makeStyles((theme) => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    // width: "35ch"
   },
   errors: {
     color: "red",
@@ -105,8 +104,7 @@ Object.freeze(emptyErrors);
 
 // Sign up page
 export default function Registration (props) {
-  const setAuthToken = {props},
-  [formValues, setFormValues] = useState(emptyForm),
+  const [formValues, setFormValues] = useState(emptyForm),
   [validationErrors, setValidationErrors] = useState(emptyErrors),
   styles = styleDefinition();
   const history = useHistory();
