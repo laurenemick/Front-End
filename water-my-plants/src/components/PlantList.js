@@ -99,15 +99,16 @@ const PlantList = () => {
 
   return (
     <div className="plants">
-      <Card className={classes.headercard}>
-        <h1 >My Plants</h1>
-      </Card>
       <div className="plant-container">
         <div className="plant-list">
-          {!plantList ? (
+          {(plantList.length === 0) ? (
             <div />
           ) : (
-            plantList.map((plant, index) => (
+            <>
+            <Card className={classes.headercard}>
+              <h1 >My Plants</h1>
+            </Card>
+            {plantList.map((plant, index) => (
               <div>
                 <Card className={classes.root} key={plant.plantid}>
                   <CardHeader
@@ -189,6 +190,8 @@ const PlantList = () => {
                 </Card>
               </div>
             ))
+            }
+            </>
           )}
         </div>
       </div>

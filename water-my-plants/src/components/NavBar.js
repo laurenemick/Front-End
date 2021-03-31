@@ -91,15 +91,17 @@ export default function NavBar() {
             <div>
               <Button>
                 <AccountCircleIcon color="secondary" />
-                <Link to="/logout"
-                      style={{ textDecoration: "none", color:"white"  }}>
+                <Link 
+                  to="/logout"
+                  style={{ textDecoration: "none", color:"white"  }}
+                >
                   Logout
                 </Link>
               </Button>
             </div> :
             <div>
               { location === "/login" ?
-                <div/> :
+                <div /> :
                 <Button>
                   <Link to="/login"
                         style={{ textDecoration: "none", color:"white"  }}>
